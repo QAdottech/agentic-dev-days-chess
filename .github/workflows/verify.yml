@@ -1,0 +1,55 @@
+# Verification Pipeline
+#
+# 2 layers of code-level verification:
+#
+# Layer 1: Build + Lint + Types      → catches syntax/type errors (seconds)
+# Layer 2: Invariant Tests           → catches property violations (seconds)
+#
+# Layer 3 (QA.tech E2E) runs automatically via the QA.tech GitHub integration
+# when a Vercel preview deploy is ready. No action config needed.
+
+name: Verification Pipeline
+
+on:
+  pull_request:
+
+env:
+  NODE_VERSION: "20"
+
+jobs:
+  # ──────────────────────────────────────────────
+  # Layer 1: Build + Lint + Types
+  # ──────────────────────────────────────────────
+  layer-1-build:
+    name: "Layer 1: Build + Lint + Types"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+        name: Type check
+      - run: npm run lint
+        name: Lint
+      - run: npm run build
+        name: Build
+
+  # ──────────────────────────────────────────────
+  # Layer 2: Invariant Tests
+  # ──────────────────────────────────────────────
+  layer-2-invariants:
+    name: "Layer 2: Invariant Tests"
+    runs-on: ubuntu-latest
+    needs: layer-1-build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run test:invariants
+        name: Run invariant tests
