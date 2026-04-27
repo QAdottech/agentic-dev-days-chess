@@ -72,10 +72,13 @@ Use whatever coding agent you prefer — Claude Code, Cursor, Copilot, or anythi
 
 ### 8. How PRs work
 
-For each task, create a feature branch off your pair branch and open a PR back to it:
+Your pair has a **live workspace branch** (`pair-XX`) with its own PR against main. This PR gives you a live deployment of your current state.
+
+For each task, create a feature branch off your pair branch and open a PR **against your pair branch** (not main):
 
 ```bash
-git checkout -b pXX-task-0-fix-bugs    # branch off pair-XX
+git checkout pair-XX
+git checkout -b pXX-task-0-fix-bugs
 # ... make changes ...
 git push -u origin pXX-task-0-fix-bugs
 # open PR against pair-XX on GitHub
@@ -86,7 +89,7 @@ When you push a PR:
 - **GitHub Actions** runs the invariant tests (Layer 1 + 2)
 - **QA.tech** reviews your PR against the preview deployment (Layer 3) — this happens automatically and takes a few minutes
 
-Merge each task's PR before starting the next one. Each task builds on the previous.
+Merge each task's PR into your pair branch before starting the next one. Each task builds on the previous. Your live workspace PR against main updates automatically as you merge.
 
 ## What's in the repo
 
