@@ -275,4 +275,60 @@ export const OPENINGS: Record<string, Opening> = {
       },
     ],
   },
+
+  carokann: {
+    name: "Caro-Kann Defense",
+    description:
+      "A solid, structurally sound reply to 1.e4. Black supports a future ...d5 with the c-pawn, avoiding the cramped pawn structure of the French. Karpov and Petrosian were lifelong adherents.",
+    moves: [
+      {
+        notation: "1. e4",
+        description: "White claims the center with the king's pawn.",
+        from: { row: 6, col: 4 },
+        to: { row: 4, col: 4 },
+      },
+      {
+        notation: "1... c6",
+        description:
+          "The Caro-Kann move. Black quietly prepares ...d5 with full pawn support.",
+        from: { row: 1, col: 2 },
+        to: { row: 2, col: 2 },
+      },
+      {
+        notation: "2. d4",
+        description:
+          "White grabs the full center — the main line and most challenging continuation.",
+        from: { row: 6, col: 3 },
+        to: { row: 4, col: 3 },
+      },
+      {
+        notation: "2... d5",
+        description:
+          "Black strikes back at the center. Unlike the French, Black's light-squared bishop still has a clear future.",
+        from: { row: 1, col: 3 },
+        to: { row: 3, col: 3 },
+      },
+      {
+        notation: "3. Nc3",
+        description:
+          "Defending e4 with a developing move — entering the Classical Variation.",
+        from: { row: 7, col: 1 },
+        to: { row: 5, col: 2 },
+      },
+      {
+        notation: "3... dxe4",
+        description:
+          "Black grabs the pawn, conceding the center to get a solid structure and clear development.",
+        from: { row: 3, col: 3 },
+        to: { row: 4, col: 4 },
+      },
+      {
+        notation: "4. Nxe4",
+        description:
+          "White recaptures with the knight, eyeing strong central squares. The Classical Caro-Kann is reached.",
+        from: { row: 5, col: 2 },
+        to: { row: 4, col: 4 },
+      },
+    ],
+  },
 };
