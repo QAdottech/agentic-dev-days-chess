@@ -18,6 +18,8 @@
   --square-dark: #6b5c42;
   --piece-white: #ffffff;
   --piece-black: #1a1210;
+  --piece-white-stroke: rgba(0, 0, 0, 0);
+  --piece-black-stroke: rgba(255, 255, 255, 0.18);
   --highlight-from: rgba(245, 158, 11, 0.45);
   --highlight-to: rgba(34, 197, 94, 0.45);
   --highlight-extra: rgba(34, 197, 94, 0.3);
@@ -40,6 +42,8 @@
   --square-dark: #a07a44;
   --piece-white: #fbf6e8;
   --piece-black: #1a1210;
+  --piece-white-stroke: #2a221a;
+  --piece-black-stroke: rgba(0, 0, 0, 0);
   --highlight-from: rgba(217, 119, 6, 0.55);
   --highlight-to: rgba(22, 163, 74, 0.5);
   --highlight-extra: rgba(22, 163, 74, 0.35);

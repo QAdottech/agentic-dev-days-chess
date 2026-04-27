@@ -110,6 +110,9 @@ export default function Board({ board, currentMove }: BoardProps) {
                       color: isWhitePiece(piece)
                         ? tokenVar("pieceWhite")
                         : tokenVar("pieceBlack"),
+                      WebkitTextStroke: isWhitePiece(piece)
+                        ? `1px ${tokenVar("pieceWhiteStroke")}`
+                        : `1px ${tokenVar("pieceBlackStroke")}`,
                       textShadow: isWhitePiece(piece)
                         ? "0 1px 3px rgba(0,0,0,0.6)"
                         : "0 1px 3px rgba(0,0,0,0.3)",

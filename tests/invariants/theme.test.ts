@@ -26,6 +26,8 @@ const REQUIRED_KEYS: ThemeTokenKey[] = [
   "squareDark",
   "pieceWhite",
   "pieceBlack",
+  "pieceWhiteStroke",
+  "pieceBlackStroke",
   "highlightFrom",
   "highlightTo",
   "highlightExtra",

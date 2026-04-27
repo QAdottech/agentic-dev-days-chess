@@ -21,6 +21,8 @@ export type ThemeTokenKey =
   | "squareDark"
   | "pieceWhite"
   | "pieceBlack"
+  | "pieceWhiteStroke"
+  | "pieceBlackStroke"
   | "highlightFrom"
   | "highlightTo"
   | "highlightExtra";
@@ -45,6 +47,8 @@ export const THEMES: Record<ThemeName, ThemeTokens> = {
     squareDark: "#6b5c42",
     pieceWhite: "#ffffff",
     pieceBlack: "#1a1210",
+    pieceWhiteStroke: "rgba(0, 0, 0, 0)",
+    pieceBlackStroke: "rgba(255, 255, 255, 0.18)",
     highlightFrom: "rgba(245, 158, 11, 0.45)",
     highlightTo: "rgba(34, 197, 94, 0.45)",
     highlightExtra: "rgba(34, 197, 94, 0.3)",
@@ -66,6 +70,8 @@ export const THEMES: Record<ThemeName, ThemeTokens> = {
     squareDark: "#a07a44",
     pieceWhite: "#fbf6e8",
     pieceBlack: "#1a1210",
+    pieceWhiteStroke: "#2a221a",
+    pieceBlackStroke: "rgba(0, 0, 0, 0)",
     highlightFrom: "rgba(217, 119, 6, 0.55)",
     highlightTo: "rgba(22, 163, 74, 0.5)",
     highlightExtra: "rgba(22, 163, 74, 0.35)",
@@ -89,6 +95,8 @@ const TOKEN_TO_VAR: Record<ThemeTokenKey, string> = {
   squareDark: "--square-dark",
   pieceWhite: "--piece-white",
   pieceBlack: "--piece-black",
+  pieceWhiteStroke: "--piece-white-stroke",
+  pieceBlackStroke: "--piece-black-stroke",
   highlightFrom: "--highlight-from",
   highlightTo: "--highlight-to",
   highlightExtra: "--highlight-extra",
