@@ -14,133 +14,102 @@ Chess logic lives in `src/app/lib/` as pure functions. Tests import and verify t
 
 Invariants are defined in `INVARIANTS.md`. Read it first.
 
+**Important:** If a test fails, fix the source code — never weaken the test.
+
 ---
 
 ## Your workflow
 
-1. Run `npm test` locally — read what fails
-2. Direct your coding agent to fix/implement
-3. Push, open a PR against your pair branch
-4. Pipeline runs — invariant tests give fast feedback
-5. QA.tech reviews the PR — visual/behavioral feedback
-6. Direct your agent to fix what QA.tech finds
-7. Push again — repeat until green
+1. Create a feature branch off your pair branch: `git checkout -b pXX-task-N-description`
+2. Run `npm test` locally — read what fails
+3. Direct your coding agent to fix/implement
+4. Push, open a PR against your pair branch
+5. Pipeline runs — invariant tests give fast feedback
+6. QA.tech reviews the PR — visual/behavioral feedback arrives in a few minutes
+7. Direct your agent to fix what QA.tech finds, push again
+8. Merge when both layers are green, then branch off for the next task
+
+Each task builds on the previous — merge before starting the next one.
 
 ---
 
-## Task 0: Fix the App (20 min)
+## Task 0: Fix the App
 
-**Goal:** Use the verification pipeline to find and fix all bugs in the app.
+**Goal:** Use the verification pipeline to find and fix everything that's wrong.
 
-### Step 1: Run the invariant tests
+Run the tests. Read the failures. Direct your agent to fix them. But don't stop at green tests — run `npm run dev` and look at the app yourself. There may be issues only a browser can reveal.
+
+Push a PR. The pipeline and QA.tech will tell you what's still wrong. Keep iterating until both layers are satisfied.
 
 ```bash
 npm test
+npm run dev
 ```
 
-You'll see failures. Read the output — the invariants tell you exactly what's wrong. Direct your coding agent to fix the issues based on the test output.
-
-### Step 2: Push and open a PR
-
-Once tests pass locally, push and open a PR against your pair branch.
-
-The pipeline will run the invariant tests in CI. But that's only the code layer.
-
-### Step 3: Wait for QA.tech
-
-QA.tech will automatically review your PR against the deployed preview. It tests the app in a real browser — things that code tests can't check.
-
-When the review arrives, read it carefully. There may be issues that your invariant tests didn't catch. Direct your agent to fix those too, push again.
-
-### Step 4: Iterate
-
-Keep going until both layers are satisfied. This is the loop:
-
-```
-Agent fixes code → tests pass → push → QA.tech finds visual issues → agent fixes → push → QA.tech approves
-```
-
-**Done when:** Invariant tests pass AND QA.tech approves the PR.
+**Done when:** All invariant tests pass AND QA.tech approves the PR.
 
 ---
 
-## Task 1: Add a New Opening (15 min)
+## Task 1: Add a New Opening
 
-**Goal:** Add new content and see how the existing invariants automatically validate it.
+**Goal:** Add new content and see how existing invariants protect you.
 
-### Choose an opening
+Pick a chess opening you know, or look one up. Add it to `src/app/lib/openings.ts`. Use the existing openings as a reference for the data shape.
 
-Pick one (or look one up):
+Run `npm test` after adding it and watch the test count — the existing invariants automatically apply to your new opening without writing any new tests.
 
-- **London System**: 1.d4 d5 2.Bf4 Nf6 3.e3 e6
-- **Caro-Kann**: 1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4
-- **French Defense**: 1.e4 e6 2.d4 d5 3.Nc3
-- Or any opening you know
-
-### Direct your coding agent
-
-> "Add the [Opening Name] to `src/app/lib/openings.ts`. The moves are: [list moves]. Make sure every move has the correct from/to coordinates, notation, and a short description."
-
-### What to watch for
-
-The existing invariant tests (OPEN-01 through OPEN-05) apply to ALL openings automatically. If your agent gets a coordinate wrong, the tests will catch it. This is the power of invariants — they protect new code without writing new tests.
-
-Push a PR. QA.tech will verify the new opening works visually.
+Push a PR. QA.tech will verify it renders correctly.
 
 ---
 
-## Task 2: Add Light Mode / Theme Toggle (20 min)
+## Task 2: Light Mode Toggle
 
 **Goal:** Define your own invariants before implementing.
 
-The app currently has a dark theme. Add a light theme and a toggle to switch between them.
+The app is dark-themed. Add a light theme and a toggle. Before writing any code, think about what must always be true about theming and add your invariants to `INVARIANTS.md`.
 
-### Step 1: Define invariants
+Then direct your agent to implement it — both the logic and the invariant tests.
 
-Before writing code, think: what must always be true about theming? Add invariants to `INVARIANTS.md`. Consider:
-
-- Are all pieces visible in both themes? (contrast against board squares)
-- Does the toggle switch between exactly two states?
-- Should the theme persist across page reloads?
-- Do move highlights work on both themes?
-- Is all text readable in both themes?
-
-### Step 2: Direct your coding agent
-
-> "Add a light/dark theme toggle to the chess app. The app is currently dark-themed. Create theme logic in `src/app/lib/theme.ts` as pure functions. Add a toggle button in the header area. Write invariant tests in `tests/invariants/theme.test.ts` that verify the invariants I defined."
-
-### Step 3: Push and get feedback
-
-Code-level invariants verify the logic. QA.tech verifies it looks right — contrast, readability, no invisible pieces on either theme.
+The tricky part: the agent can't see if the pieces are actually visible against the new colors. QA.tech can.
 
 ---
 
-## Task 3: Add Shareable Links (20 min)
+## Task 3: Board Flip
 
-**Goal:** Complex feature with state serialization. Define invariants first.
+**Goal:** View the board from Black's perspective.
 
-### Step 1: Define invariants
+Add a button that flips the board. Sounds simple. Think about what needs to change: piece positions, coordinate labels, move highlights, interactions.
 
-If someone shares a link to "Italian Game at move 3", what must be true?
+Define invariants first — what must be true about the flipped view?
 
-- Does the URL restore the exact state?
-- What happens with an invalid URL?
-- What about a move index that's out of range?
-
-### Step 2: Direct your coding agent
-
-> "Add shareable links. Create URL serialization logic in `src/app/lib/sharing.ts` as pure functions. Write invariant tests that verify round-tripping: serialize → deserialize → same state."
+This is a task where the agent will be confident but likely wrong. It can't verify the visual output. QA.tech can.
 
 ---
 
-## Task 4: Choose Your Own (stretch)
+## Task 4: Guess the Next Move
 
-- **Move animation** — pieces slide between squares
-- **Quiz mode** — guess the next move
-- **Opening comparison** — two boards side by side
-- **Keyboard navigation** — arrow keys for next/back
+**Goal:** Make the app interactive.
 
-Define invariants first. Always.
+Add a mode where the next move is hidden and the user clicks squares to guess. They select a piece, then select a destination. The app tells them if they got it right.
+
+This requires click handlers on the board, two-step interaction (select piece → select target), comparison against the opening data, and visual feedback.
+
+Define invariants for the interaction logic. QA.tech can test the full click-through flow.
+
+---
+
+## Go Further
+
+If you finish early, pick one or combine several:
+
+- **Move animation** — pieces slide between squares instead of teleporting. What invariants ensure the animation start/end positions match the actual move?
+- **PGN import** — paste algebraic notation ("1. e4 e5 2. Nf3 Nc6") and have it parsed into the app. How do you verify the parsed result matches the input? What about invalid PGN?
+- **Opening comparison** — show two openings side by side on two boards. What invariants ensure the boards are independent?
+- **Sub-variations** — add branching where an opening can split into different lines (e.g. Sicilian Najdorf vs Dragon). How does the data model change? Do existing invariants still hold?
+- **Shareable links** — encode the current opening and move into the URL so it can be shared. What must be true about the round-trip: serialize → share → deserialize → same state?
+- **Keyboard navigation** — arrow keys for next/back, number keys to jump to a move. Invariant: keyboard and button controls always produce the same board state.
+
+For all of these: **define invariants first, then implement.**
 
 ---
 
@@ -152,6 +121,7 @@ Define invariants first. Always.
 npm test                  # run all tests
 npm run test:invariants   # invariant tests only
 npm run test:watch        # watch mode
+npm run dev               # run the app locally
 ```
 
 ### Project Structure
