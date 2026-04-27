@@ -63,14 +63,18 @@ When you add a new feature, define the invariants first. Then implement. The inv
 
 ### Light Mode / Theme Toggle (Task 2)
 
-_Define your own invariants here. Think about:_
-
 | ID | Invariant | Severity |
 |----|-----------|----------|
-| THEME-01 | ? | ? |
-| THEME-02 | ? | ? |
+| THEME-01 | Exactly two theme modes exist: `dark` and `light` | Critical |
+| THEME-02 | `getTheme(mode)` returns a theme whose `.mode` matches the input | Critical |
+| THEME-03 | `nextMode` is involutive: `nextMode(nextMode(m)) === m` for every mode | Critical |
+| THEME-04 | Both themes define the same set of token keys (no missing tokens after a swap) | Critical |
+| THEME-05 | Every token value in both themes is a non-empty string | Major |
+| THEME-06 | Each piece color meets WCAG ≥ 4.5:1 contrast against the opposite-color square in both themes (visibility on alternating ranks) | Critical |
+| THEME-07 | `textPrimary` meets WCAG ≥ 4.5:1 contrast against `surface` in both themes (body text legibility) | Critical |
+| THEME-08 | `textOnAccent` meets WCAG ≥ 4.5:1 contrast against `accent` in both themes | Major |
 
-_What must always be true about theme switching? About color contrast? About persistence?_
+**Test file:** `tests/invariants/theme.test.ts`
 
 ### Shareable Links (Task 3)
 

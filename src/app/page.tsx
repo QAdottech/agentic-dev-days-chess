@@ -9,8 +9,11 @@ import OpeningSelector from "./components/OpeningSelector";
 import Controls from "./components/Controls";
 import MoveList from "./components/MoveList";
 import CheatSheet from "./components/CheatSheet";
+import ThemeToggle from "./components/ThemeToggle";
+import { useTheme } from "./components/ThemeProvider";
 
 export default function Home() {
+  const { theme } = useTheme();
   const [selectedOpening, setSelectedOpening] = useState("italian");
   const [moveIndex, setMoveIndex] = useState(-1);
 
@@ -41,22 +44,22 @@ export default function Home() {
     <div
       className="min-h-screen"
       style={{
-        backgroundColor: "#1a1612",
+        backgroundColor: theme.bg,
         fontFamily: "'Georgia', 'Times New Roman', serif",
       }}
     >
       <div className="mx-auto max-w-6xl px-6 py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1
-            className="text-3xl font-bold"
-            style={{ color: "#c9a84c" }}
-          >
-            Chess Openings
-          </h1>
-          <p className="mt-1 text-sm" style={{ color: "#8a7e6b" }}>
-            Interactive guide to classic opening theory
-          </p>
+        <div className="mb-8 flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold" style={{ color: theme.accent }}>
+              Chess Openings
+            </h1>
+            <p className="mt-1 text-sm" style={{ color: theme.textMuted }}>
+              Interactive guide to classic opening theory
+            </p>
+          </div>
+          <ThemeToggle />
         </div>
 
         {/* Opening selector */}
@@ -69,10 +72,16 @@ export default function Home() {
 
         {/* Opening description */}
         <div className="mb-6">
-          <h2 className="text-xl font-semibold" style={{ color: "#e8e0d4" }}>
+          <h2
+            className="text-xl font-semibold"
+            style={{ color: theme.textPrimary }}
+          >
             {opening.name}
           </h2>
-          <p className="mt-1 text-sm leading-relaxed" style={{ color: "#8a7e6b" }}>
+          <p
+            className="mt-1 text-sm leading-relaxed"
+            style={{ color: theme.textMuted }}
+          >
             {opening.description}
           </p>
         </div>

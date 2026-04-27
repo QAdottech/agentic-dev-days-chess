@@ -1,5 +1,7 @@
 "use client";
 
+import { useTheme } from "./ThemeProvider";
+
 interface ControlsProps {
   onReset: () => void;
   onBack: () => void;
@@ -8,8 +10,16 @@ interface ControlsProps {
   canGoNext: boolean;
 }
 
-export default function Controls({ onReset, onBack, onNext, canGoBack, canGoNext }: ControlsProps) {
-  const buttonBase = "rounded-md px-4 py-2 text-sm font-medium transition-colors";
+export default function Controls({
+  onReset,
+  onBack,
+  onNext,
+  canGoBack,
+  canGoNext,
+}: ControlsProps) {
+  const { theme } = useTheme();
+  const buttonBase =
+    "rounded-md px-4 py-2 text-sm font-medium transition-colors";
 
   return (
     <div className="flex gap-3">
@@ -17,9 +27,9 @@ export default function Controls({ onReset, onBack, onNext, canGoBack, canGoNext
         onClick={onReset}
         className={buttonBase}
         style={{
-          backgroundColor: "#2a2420",
-          color: "#e8e0d4",
-          border: "1px solid #3a3228",
+          backgroundColor: theme.surfaceRaised,
+          color: theme.textPrimary,
+          border: `1px solid ${theme.border}`,
         }}
       >
         Reset
@@ -29,9 +39,9 @@ export default function Controls({ onReset, onBack, onNext, canGoBack, canGoNext
         disabled={!canGoBack}
         className={buttonBase}
         style={{
-          backgroundColor: canGoBack ? "#2a2420" : "#1e1a16",
-          color: canGoBack ? "#e8e0d4" : "#5a5248",
-          border: `1px solid ${canGoBack ? "#3a3228" : "#2a2420"}`,
+          backgroundColor: canGoBack ? theme.surfaceRaised : theme.surface,
+          color: canGoBack ? theme.textPrimary : theme.textDisabled,
+          border: `1px solid ${canGoBack ? theme.border : theme.borderSubtle}`,
           cursor: canGoBack ? "pointer" : "not-allowed",
         }}
       >
@@ -42,9 +52,9 @@ export default function Controls({ onReset, onBack, onNext, canGoBack, canGoNext
         disabled={!canGoNext}
         className={buttonBase}
         style={{
-          backgroundColor: canGoNext ? "#c9a84c" : "#1e1a16",
-          color: canGoNext ? "#1a1612" : "#5a5248",
-          border: `1px solid ${canGoNext ? "#c9a84c" : "#2a2420"}`,
+          backgroundColor: canGoNext ? theme.accent : theme.surface,
+          color: canGoNext ? theme.textOnAccent : theme.textDisabled,
+          border: `1px solid ${canGoNext ? theme.accent : theme.borderSubtle}`,
           cursor: canGoNext ? "pointer" : "not-allowed",
           fontWeight: canGoNext ? 600 : 500,
         }}

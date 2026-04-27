@@ -1,6 +1,14 @@
 "use client";
 
-import { Board as BoardType, Move, getPieceSymbol, isWhitePiece, FILES, RANKS } from "../lib/chess";
+import {
+  Board as BoardType,
+  Move,
+  getPieceSymbol,
+  isWhitePiece,
+  FILES,
+  RANKS,
+} from "../lib/chess";
+import { useTheme } from "./ThemeProvider";
 
 interface BoardProps {
   board: BoardType;
@@ -8,27 +16,31 @@ interface BoardProps {
 }
 
 export default function Board({ board, currentMove }: BoardProps) {
+  const { theme } = useTheme();
   const highlights = new Map<string, string>();
 
   if (currentMove) {
     highlights.set(
       `${currentMove.to.row},${currentMove.to.col}`,
-      "rgba(34, 197, 94, 0.45)",
+      theme.highlightTo,
     );
     highlights.set(
       `${currentMove.from.row},${currentMove.from.col}`,
-      "rgba(245, 158, 11, 0.45)",
+      theme.highlightFrom,
     );
 
     if (currentMove.extra) {
       for (const ex of currentMove.extra) {
-        highlights.set(
-          `${ex.to.row},${ex.to.col}`,
-          "rgba(34, 197, 94, 0.3)",
-        );
+        highlights.set(`${ex.to.row},${ex.to.col}`, theme.highlightExtra);
       }
     }
   }
+
+  const labelStyle = {
+    fontSize: 12,
+    color: theme.textMuted,
+    fontFamily: "monospace",
+  } as const;
 
   return (
     <div style={{ display: "inline-block" }}>
@@ -40,10 +52,8 @@ export default function Board({ board, currentMove }: BoardProps) {
             style={{
               width: 64,
               textAlign: "center",
-              fontSize: 12,
-              color: "#8a7e6b",
-              fontFamily: "monospace",
               paddingBottom: 2,
+              ...labelStyle,
             }}
           >
             {f}
@@ -58,9 +68,7 @@ export default function Board({ board, currentMove }: BoardProps) {
             style={{
               width: 28,
               textAlign: "center",
-              fontSize: 12,
-              color: "#8a7e6b",
-              fontFamily: "monospace",
+              ...labelStyle,
             }}
           >
             {RANKS[r]}
@@ -68,7 +76,7 @@ export default function Board({ board, currentMove }: BoardProps) {
 
           {row.map((piece, c) => {
             const isLight = (r + c) % 2 === 0;
-            const baseColor = isLight ? "#d4c4a0" : "#6b5c42";
+            const baseColor = isLight ? theme.squareLight : theme.squareDark;
             const highlight = highlights.get(`${r},${c}`);
 
             return (
@@ -102,7 +110,9 @@ export default function Board({ board, currentMove }: BoardProps) {
                     style={{
                       position: "relative",
                       zIndex: 1,
-                      color: isWhitePiece(piece) ? "#fff" : "#1a1210",
+                      color: isWhitePiece(piece)
+                        ? theme.whitePiece
+                        : theme.blackPiece,
                       textShadow: isWhitePiece(piece)
                         ? "0 1px 3px rgba(0,0,0,0.6)"
                         : "0 1px 3px rgba(0,0,0,0.3)",
@@ -123,9 +133,7 @@ export default function Board({ board, currentMove }: BoardProps) {
             style={{
               width: 28,
               textAlign: "center",
-              fontSize: 12,
-              color: "#8a7e6b",
-              fontFamily: "monospace",
+              ...labelStyle,
             }}
           >
             {RANKS[r]}
@@ -141,10 +149,8 @@ export default function Board({ board, currentMove }: BoardProps) {
             style={{
               width: 64,
               textAlign: "center",
-              fontSize: 12,
-              color: "#8a7e6b",
-              fontFamily: "monospace",
               paddingTop: 2,
+              ...labelStyle,
             }}
           >
             {f}
