@@ -49,7 +49,16 @@ npm run dev
 
 Open http://localhost:3000 — you should see a chess openings guide. Click around, step through some openings. Notice anything off?
 
-### 5. Run the tests
+### 5. Install GitHub CLI
+
+The GitHub CLI lets you (and your coding agent) read PR feedback directly from the terminal — pipeline status, QA.tech reviews, etc.
+
+```bash
+brew install gh    # or see https://cli.github.com
+gh auth login
+```
+
+### 6. Run the tests
 
 ```bash
 npm test
@@ -57,11 +66,11 @@ npm test
 
 You'll see failures. That's expected — the app has bugs. Read `TASKS.md` for what to do next.
 
-### 6. Your coding agent
+### 7. Your coding agent
 
 Use whatever coding agent you prefer — Claude Code, Cursor, Copilot, or anything else. The tasks are agent-agnostic.
 
-### 7. How PRs work
+### 8. How PRs work
 
 For each task, create a feature branch off your pair branch and open a PR back to it:
 
