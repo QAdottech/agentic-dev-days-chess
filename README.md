@@ -66,9 +66,9 @@ Use whatever coding agent you prefer — Claude Code, Cursor, Copilot, or anythi
 For each task, create a feature branch off your pair branch and open a PR back to it:
 
 ```bash
-git checkout -b p{XX}-task-0-fix-bugs    # branch off pair-XX
+git checkout -b pXX-task-0-fix-bugs    # branch off pair-XX
 # ... make changes ...
-git push -u origin p{XX}-task-0-fix-bugs
+git push -u origin pXX-task-0-fix-bugs
 # open PR against pair-XX on GitHub
 ```
 

@@ -1,3 +1,5 @@
+// If a test fails, fix the source code, not the test.
+
 import { describe, it, expect } from "vitest";
 import {
   INITIAL_BOARD,

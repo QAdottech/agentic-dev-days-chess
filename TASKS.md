@@ -37,14 +37,24 @@ Each task builds on the previous — merge before starting the next one.
 
 **Goal:** Use the verification pipeline to find and fix everything that's wrong.
 
-Run the tests. Read the failures. Direct your agent to fix them. But don't stop at green tests — run `npm run dev` and look at the app yourself. There may be issues only a browser can reveal.
+Start by opening a PR immediately — before fixing anything. This triggers all three layers so you can see the full picture of what's broken:
 
-Push a PR. The pipeline and QA.tech will tell you what's still wrong. Keep iterating until both layers are satisfied.
+```bash
+git checkout -b pXX-task-0-fix-bugs
+git commit --allow-empty -m "trigger verification pipeline"
+git push -u origin pXX-task-0-fix-bugs
+# open a PR against pair-XX on GitHub
+```
+
+While waiting for QA.tech, run the invariant tests locally:
 
 ```bash
 npm test
-npm run dev
 ```
+
+Fix what the tests catch. Push. Then read the QA.tech review when it arrives — there are issues that only a browser can reveal. Fix those too. Push again.
+
+Keep iterating until both layers are satisfied.
 
 **Done when:** All invariant tests pass AND QA.tech approves the PR.
 

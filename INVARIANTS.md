@@ -26,8 +26,7 @@ When you add a new feature, define the invariants first. Then implement. The inv
 | ID | Invariant | Severity |
 |----|-----------|----------|
 | PIECE-01 | Every piece letter maps to a unique Unicode symbol | Critical |
-| PIECE-02 | White and black versions of the same piece use matching symbol pairs (♔/♚, ♕/♛, ♖/♜, ♗/♝, ♘/♞, ♙/♟) | Critical |
-| PIECE-03 | `getPieceSymbol` returns a non-empty string for every piece letter in the initial position | Major |
+| PIECE-02 | `getPieceSymbol` returns a non-empty string for every piece letter in the initial position | Major |
 
 **Test file:** `tests/invariants/pieces.test.ts`
 
@@ -58,18 +57,35 @@ _Define your own invariants here. Think about:_
 | THEME-01 | ? | ? |
 | THEME-02 | ? | ? |
 
-_What must always be true about theme switching? About color contrast? About persistence?_
+_What must always be true about theme switching? About piece visibility? About persistence?_
 
-### Shareable Links (Task 3)
+### Board Flip (Task 3)
 
 _Define your own invariants here. Think about:_
 
 | ID | Invariant | Severity |
 |----|-----------|----------|
-| SHARE-01 | ? | ? |
-| SHARE-02 | ? | ? |
+| FLIP-01 | ? | ? |
+| FLIP-02 | ? | ? |
 
-_What must always be true about URL serialization? About loading a shared link? About invalid URLs?_
+_What must always be true about the flipped view? Coordinate labels? Highlights? Piece positions?_
+
+### Guess the Next Move (Task 4)
+
+_Define your own invariants here. Think about:_
+
+| ID | Invariant | Severity |
+|----|-----------|----------|
+| GUESS-01 | ? | ? |
+| GUESS-02 | ? | ? |
+
+_What must always be true about the guess interaction? About correct/incorrect feedback? About recovering from a wrong guess?_
+
+---
+
+## Stretch Invariants
+
+_For "Go Further" tasks, define your own sections here._
 
 ---
 
@@ -79,8 +95,9 @@ These can't be checked in code — they require a real browser:
 
 | ID | Invariant | Severity |
 |----|-----------|----------|
-| UI-01 | Pieces are visually distinguishable on both light and dark squares | Critical |
-| UI-02 | The highlighted square matches the move's actual origin and destination | Critical |
-| UI-03 | Stepping through all moves of an opening and resetting returns to the starting position visually | Major |
-| UI-04 | Switching openings resets the board correctly | Major |
-| UI-05 | The board renders correctly on mobile viewports | Major |
+| UI-01 | Pieces are visually identifiable as their correct type (bishops look like bishops, knights look like knights) for both sides | Critical |
+| UI-02 | The highlighted squares match the move's actual origin and destination | Critical |
+| UI-03 | Every piece is clearly visible against its square | Critical |
+| UI-04 | Stepping through all moves and resetting returns to the starting position visually | Major |
+| UI-05 | Switching openings resets the board correctly | Major |
+| UI-06 | The board and controls are usable on mobile without horizontal scrolling | Major |
