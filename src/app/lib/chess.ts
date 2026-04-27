@@ -25,9 +25,8 @@ export const PIECE_SYMBOLS: Record<string, string> = {
   k: "\u265A",
   q: "\u265B",
   r: "\u265C",
-  // BUG: black knight and bishop symbols are swapped
-  n: "\u265D", // should be \u265E (knight), but shows bishop symbol
-  b: "\u265E", // should be \u265D (bishop), but shows knight symbol
+  n: "\u265E",
+  b: "\u265D",
   p: "\u265F",
 };
 
