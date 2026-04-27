@@ -61,7 +61,7 @@ When you add a new feature, define the invariants first. Then implement. The inv
 
 ## Features to Add (workshop tasks)
 
-### Dark Mode (Task 2)
+### Light Mode / Theme Toggle (Task 2)
 
 _Define your own invariants here. Think about:_
 

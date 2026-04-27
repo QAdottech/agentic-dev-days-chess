@@ -89,26 +89,29 @@ Push a PR. QA.tech will verify the new opening works visually.
 
 ---
 
-## Task 2: Add Dark Mode / Theme Toggle (20 min)
+## Task 2: Add Light Mode / Theme Toggle (20 min)
 
 **Goal:** Define your own invariants before implementing.
+
+The app currently has a dark theme. Add a light theme and a toggle to switch between them.
 
 ### Step 1: Define invariants
 
 Before writing code, think: what must always be true about theming? Add invariants to `INVARIANTS.md`. Consider:
 
-- What happens to piece visibility when you switch themes?
+- Are all pieces visible in both themes? (contrast against board squares)
+- Does the toggle switch between exactly two states?
 - Should the theme persist across page reloads?
-- Do highlights work on both themes?
-- Does the board maintain contrast?
+- Do move highlights work on both themes?
+- Is all text readable in both themes?
 
 ### Step 2: Direct your coding agent
 
-> "Add a dark/light theme toggle. Create theme logic in `src/app/lib/theme.ts` as pure functions. Write invariant tests in `tests/invariants/theme.test.ts` that verify the invariants I defined."
+> "Add a light/dark theme toggle to the chess app. The app is currently dark-themed. Create theme logic in `src/app/lib/theme.ts` as pure functions. Add a toggle button in the header area. Write invariant tests in `tests/invariants/theme.test.ts` that verify the invariants I defined."
 
 ### Step 3: Push and get feedback
 
-Code-level invariants verify the logic. QA.tech verifies it looks right — contrast, readability, no invisible pieces.
+Code-level invariants verify the logic. QA.tech verifies it looks right — contrast, readability, no invisible pieces on either theme.
 
 ---
 
