@@ -30,22 +30,37 @@ export default function Board({ board, currentMove }: BoardProps) {
     }
   }
 
+  // The board scales with viewport on small screens but caps at 64px squares on
+  // wider ones. All children read these CSS variables so labels, fonts, and
+  // padding stay proportional.
+  const boardVars = {
+    "--sq": "clamp(34px, calc((100vw - 80px) / 8), 64px)",
+    "--label": "calc(var(--sq) * 0.4375)",
+    "--piece-font": "calc(var(--sq) * 0.625)",
+  } as React.CSSProperties;
+
+  const labelStyle: React.CSSProperties = {
+    width: "var(--label)",
+    textAlign: "center",
+    fontSize: 12,
+    color: "#8a7e6b",
+    fontFamily: "monospace",
+  };
+
+  const fileLabelStyle: React.CSSProperties = {
+    width: "var(--sq)",
+    textAlign: "center",
+    fontSize: 12,
+    color: "#8a7e6b",
+    fontFamily: "monospace",
+  };
+
   return (
-    <div style={{ display: "inline-block" }}>
+    <div style={{ display: "inline-block", maxWidth: "100%", ...boardVars }}>
       {/* Top file labels */}
-      <div style={{ display: "flex", paddingLeft: 28 }}>
+      <div style={{ display: "flex", paddingLeft: "var(--label)" }}>
         {FILES.map((f) => (
-          <div
-            key={f}
-            style={{
-              width: 64,
-              textAlign: "center",
-              fontSize: 12,
-              color: "#8a7e6b",
-              fontFamily: "monospace",
-              paddingBottom: 2,
-            }}
-          >
+          <div key={f} style={{ ...fileLabelStyle, paddingBottom: 2 }}>
             {f}
           </div>
         ))}
@@ -54,17 +69,7 @@ export default function Board({ board, currentMove }: BoardProps) {
       {board.map((row, r) => (
         <div key={r} style={{ display: "flex", alignItems: "center" }}>
           {/* Left rank label */}
-          <div
-            style={{
-              width: 28,
-              textAlign: "center",
-              fontSize: 12,
-              color: "#8a7e6b",
-              fontFamily: "monospace",
-            }}
-          >
-            {RANKS[r]}
-          </div>
+          <div style={labelStyle}>{RANKS[r]}</div>
 
           {row.map((piece, c) => {
             const isLight = (r + c) % 2 === 0;
@@ -75,14 +80,14 @@ export default function Board({ board, currentMove }: BoardProps) {
               <div
                 key={c}
                 style={{
-                  width: 64,
-                  height: 64,
+                  width: "var(--sq)",
+                  height: "var(--sq)",
                   backgroundColor: baseColor,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   position: "relative",
-                  fontSize: 40,
+                  fontSize: "var(--piece-font)",
                   lineHeight: 1,
                   userSelect: "none",
                 }}
@@ -119,34 +124,14 @@ export default function Board({ board, currentMove }: BoardProps) {
           })}
 
           {/* Right rank label */}
-          <div
-            style={{
-              width: 28,
-              textAlign: "center",
-              fontSize: 12,
-              color: "#8a7e6b",
-              fontFamily: "monospace",
-            }}
-          >
-            {RANKS[r]}
-          </div>
+          <div style={labelStyle}>{RANKS[r]}</div>
         </div>
       ))}
 
       {/* Bottom file labels */}
-      <div style={{ display: "flex", paddingLeft: 28 }}>
+      <div style={{ display: "flex", paddingLeft: "var(--label)" }}>
         {FILES.map((f) => (
-          <div
-            key={f}
-            style={{
-              width: 64,
-              textAlign: "center",
-              fontSize: 12,
-              color: "#8a7e6b",
-              fontFamily: "monospace",
-              paddingTop: 2,
-            }}
-          >
+          <div key={f} style={{ ...fileLabelStyle, paddingTop: 2 }}>
             {f}
           </div>
         ))}
