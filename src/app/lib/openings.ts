@@ -271,7 +271,7 @@ export const OPENINGS: Record<string, Opening> = {
         description:
           "The fianchettoed bishop — it looks passive but aims at White's center like a laser.",
         from: { row: 0, col: 5 },
-        to: { row: 2, col: 6 },
+        to: { row: 1, col: 6 },
       },
     ],
   },
