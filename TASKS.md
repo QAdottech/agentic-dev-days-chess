@@ -20,16 +20,16 @@ Invariants are defined in `INVARIANTS.md`. Read it first.
 
 ## Your workflow
 
-1. Create a feature branch off your pair branch: `git checkout -b pXX-task-N-description`
-2. Run `npm test` locally — read what fails
+1. Create a feature branch: `git checkout -b p01-task-N-description`
+2. Run `npm run lint && npm test` locally — read what fails
 3. Direct your coding agent to fix/implement
 4. Push, open a PR against your pair branch
-5. Pipeline runs — invariant tests give fast feedback
-6. QA.tech reviews the PR — visual/behavioral feedback arrives in a few minutes
+5. Pipeline runs — Layer 1 + 2 give fast feedback (seconds)
+6. QA.tech reviews the PR — Layer 3 feedback arrives in 5-15 min
 7. Direct your agent to fix what QA.tech finds, push again
-8. Merge when both layers are green, then branch off for the next task
+8. Merge when all layers are green
 
-Each task builds on the previous — merge before starting the next one.
+You can start the next task while waiting for QA.tech — branch off your current task branch. Merge in order when reviews come back.
 
 ---
 

@@ -6,6 +6,7 @@ export interface Opening {
   moves: Move[];
 }
 
+// Notation convention: use move numbers, e.g. "1. e4", "1... e5", "2. Nf3"
 export const OPENINGS: Record<string, Opening> = {
   notation: {
     name: "How Notation Works",

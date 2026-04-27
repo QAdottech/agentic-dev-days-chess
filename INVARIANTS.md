@@ -50,14 +50,15 @@ When you add a new feature, define the invariants first. Then implement. The inv
 
 ### Light Mode / Theme Toggle (Task 2)
 
-_Define your own invariants here. Think about:_
+_Define your own invariants here. Some starting questions:_
 
 | ID | Invariant | Severity |
 |----|-----------|----------|
-| THEME-01 | ? | ? |
-| THEME-02 | ? | ? |
+| THEME-01 | The toggle switches between exactly two states | ? |
+| THEME-02 | ? (piece visibility) | ? |
+| THEME-03 | ? (what else must hold?) | ? |
 
-_What must always be true about theme switching? About piece visibility? About persistence?_
+_Think about: contrast, persistence across reloads, board square distinction, text readability._
 
 ### Board Flip (Task 3)
 

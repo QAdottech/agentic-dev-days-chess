@@ -28,7 +28,7 @@ cd agentic-dev-days-chess
 Each pair has a branch. Use the one assigned to you:
 
 ```bash
-git checkout pair-XX    # replace XX with your pair number
+git checkout pair-01    # use your assigned pair number (two digits: 01, 02, ... 10)
 ```
 
 This is your "main" — you'll branch off it for each task and open PRs back to it.
@@ -58,13 +58,14 @@ brew install gh    # or see https://cli.github.com
 gh auth login
 ```
 
-### 6. Run the tests
+### 6. Check for issues locally
 
 ```bash
-npm test
+npm run lint    # Layer 1: lint errors
+npm test        # Layer 2: invariant test failures
 ```
 
-You'll see failures. That's expected — the app has bugs. Read `TASKS.md` for what to do next.
+You'll see failures from both. That's expected — the app has bugs. Read `TASKS.md` for what to do next.
 
 ### 7. Your coding agent
 
@@ -77,19 +78,23 @@ Your pair has a **live workspace branch** (`pair-XX`) with its own PR against ma
 For each task, create a feature branch off your pair branch and open a PR **against your pair branch** (not main):
 
 ```bash
-git checkout pair-XX
-git checkout -b pXX-task-0-fix-bugs
+git checkout pair-01
+git checkout -b p01-task-0-fix-bugs
 # ... make changes ...
-git push -u origin pXX-task-0-fix-bugs
-# open PR against pair-XX on GitHub
+git push -u origin p01-task-0-fix-bugs
+# open PR against pair-01 on GitHub
 ```
 
 When you push a PR:
 - **Vercel** deploys a preview of your changes
-- **GitHub Actions** runs the invariant tests (Layer 1 + 2)
-- **QA.tech** reviews your PR against the preview deployment (Layer 3) — this happens automatically and takes a few minutes
+- **GitHub Actions** runs Layer 1 + 2 (seconds)
+- **QA.tech** reviews your PR against the preview (Layer 3 — takes 5-15 min depending on load)
 
-Merge each task's PR into your pair branch before starting the next one. Each task builds on the previous. Your live workspace PR against main updates automatically as you merge.
+QA.tech re-runs on every push, so you'll see multiple reviews as you iterate. That's expected.
+
+You can start the next task while waiting for QA.tech — just branch off your current task branch. Merge in order when reviews come back.
+
+Your live workspace PR against main updates automatically as you merge.
 
 ## What's in the repo
 
