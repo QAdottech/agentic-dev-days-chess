@@ -275,4 +275,52 @@ export const OPENINGS: Record<string, Opening> = {
       },
     ],
   },
+
+  london: {
+    name: "London System",
+    description:
+      "A solid, system-based opening for White. The bishop slides to f4 early, building a flexible setup that works against almost anything Black plays.",
+    moves: [
+      {
+        notation: "1. d4",
+        description: "White opens with the queen's pawn, claiming the center.",
+        from: { row: 6, col: 3 },
+        to: { row: 4, col: 3 },
+      },
+      {
+        notation: "1... d5",
+        description: "Black mirrors, contesting the center.",
+        from: { row: 1, col: 3 },
+        to: { row: 3, col: 3 },
+      },
+      {
+        notation: "2. Bf4",
+        description:
+          "The signature London move — bishop developed outside the pawn chain, eyeing the long diagonal.",
+        from: { row: 7, col: 2 },
+        to: { row: 4, col: 5 },
+      },
+      {
+        notation: "2... Nf6",
+        description:
+          "Black develops naturally, putting pressure on e4 and d5.",
+        from: { row: 0, col: 6 },
+        to: { row: 2, col: 5 },
+      },
+      {
+        notation: "3. e3",
+        description:
+          "A modest pawn move that supports d4 and frees White's king-side bishop.",
+        from: { row: 6, col: 4 },
+        to: { row: 5, col: 4 },
+      },
+      {
+        notation: "3... e6",
+        description:
+          "Black mirrors, unblocking the king-side bishop and reinforcing d5.",
+        from: { row: 1, col: 4 },
+        to: { row: 2, col: 4 },
+      },
+    ],
+  },
 };
