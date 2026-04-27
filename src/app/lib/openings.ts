@@ -271,7 +271,6 @@ export const OPENINGS: Record<string, Opening> = {
         description:
           "The fianchettoed bishop — it looks passive but aims at White's center like a laser.",
         from: { row: 0, col: 5 },
-        // BUG: should be { row: 1, col: 6 } for g7, but row: 2 puts it on g6
         to: { row: 2, col: 6 },
       },
     ],

@@ -15,7 +15,6 @@ export default function Board({ board, currentMove }: BoardProps) {
       `${currentMove.to.row},${currentMove.to.col}`,
       "rgba(34, 197, 94, 0.45)",
     );
-    // BUG: from highlight is offset by one column to the right
     highlights.set(
       `${currentMove.from.row},${currentMove.from.col + 1}`,
       "rgba(245, 158, 11, 0.45)",

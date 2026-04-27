@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { PIECE_SYMBOLS, getPieceSymbol, INITIAL_BOARD } from "@/app/lib/chess";
 
-// The correct Unicode chess symbols
+// Canonical Unicode chess code points — do not edit.
+// If a test fails, fix the source code, not this table.
 const EXPECTED_SYMBOLS: Record<string, string> = {
   K: "\u2654", // ♔ White King
   Q: "\u2655", // ♕ White Queen

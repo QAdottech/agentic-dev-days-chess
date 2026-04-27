@@ -39,23 +39,11 @@ When you add a new feature, define the invariants first. Then implement. The inv
 |----|-----------|----------|
 | OPEN-01 | Every move references valid board coordinates (row and col between 0-7) | Critical |
 | OPEN-02 | Every move's `from` square contains a piece before the move is applied | Critical |
-| OPEN-03 | The `from` piece color matches the expected side (odd moves = white, even moves = black, zero-indexed) | Critical |
+| OPEN-03 | The `from` piece color matches the expected side (even index = white, odd index = black, zero-indexed) | Critical |
 | OPEN-04 | No opening has zero moves | Major |
-| OPEN-05 | Applying all moves in an opening never results in two pieces on the same square (except captures) | Major |
+| OPEN-05 | Move notation matches the destination coordinates (e.g. "Bg7" lands on g7, not g6) | Critical |
 
 **Test file:** `tests/invariants/openings.test.ts`
-
----
-
-## Coordinate System
-
-| ID | Invariant | Severity |
-|----|-----------|----------|
-| COORD-01 | `squareToAlgebraic({row:7, col:0})` returns "a1" (bottom-left from White's perspective) | Critical |
-| COORD-02 | `squareToAlgebraic({row:0, col:0})` returns "a8" (top-left) | Critical |
-| COORD-03 | Every square on the board maps to a unique algebraic coordinate | Major |
-
-**Test file:** `tests/invariants/coordinates.test.ts` _(optional, can add to board.test.ts)_
 
 ---
 
