@@ -65,14 +65,18 @@ THEME-05 and THEME-06 are visible behaviours — they are also covered by QA.tec
 
 ### Board Flip (Task 3)
 
-_Define your own invariants here. Think about:_
-
 | ID | Invariant | Severity |
 |----|-----------|----------|
-| FLIP-01 | ? | ? |
-| FLIP-02 | ? | ? |
+| FLIP-01 | Flipping the board does not change `selectedOpening` or `moveIndex` | Major |
+| FLIP-02 | Flipping twice returns the displayed board to the unflipped state (involution) | Critical |
+| FLIP-03 | When flipped, `displayBoard[r][c] === board[7-r][7-c]` for every square | Critical |
+| FLIP-04 | When flipped, file labels read `h..a` left-to-right and rank labels read `1..8` top-to-bottom | Critical |
+| FLIP-05 | Highlighted squares always sit on the move's real `from`/`to` coordinates regardless of flip state | Critical |
+| FLIP-06 | Pieces rendered when flipped are identical to the unflipped position read backwards — no piece is lost, duplicated, or color-swapped | Critical |
 
-_What must always be true about the flipped view? Coordinate labels? Highlights? Piece positions?_
+**Test file:** `tests/invariants/flip.test.ts`
+
+FLIP-01 and FLIP-05 are behavioural and also covered by QA.tech. FLIP-02..04, 06 are pure-function checks.
 
 ### Guess the Next Move (Task 4)
 

@@ -11,10 +11,12 @@ import Controls from "./components/Controls";
 import MoveList from "./components/MoveList";
 import CheatSheet from "./components/CheatSheet";
 import ThemeToggle from "./components/ThemeToggle";
+import FlipToggle from "./components/FlipToggle";
 
 export default function Home() {
   const [selectedOpening, setSelectedOpening] = useState("italian");
   const [moveIndex, setMoveIndex] = useState(-1);
+  const [flipped, setFlipped] = useState(false);
 
   const opening = OPENINGS[selectedOpening];
   const moves = opening.moves;
@@ -58,7 +60,10 @@ export default function Home() {
               Interactive guide to classic opening theory
             </p>
           </div>
-          <ThemeToggle />
+          <div className="flex flex-wrap gap-2">
+            <FlipToggle flipped={flipped} onToggle={() => setFlipped((f) => !f)} />
+            <ThemeToggle />
+          </div>
         </div>
 
         {/* Opening selector */}
@@ -83,7 +88,7 @@ export default function Home() {
         <div className="flex flex-col gap-8 lg:flex-row">
           {/* Left: Board + controls */}
           <div className="flex flex-col items-center gap-4">
-            <Board board={board} currentMove={currentMove} />
+            <Board board={board} currentMove={currentMove} flipped={flipped} />
             <Controls
               onReset={handleReset}
               onBack={handleBack}
