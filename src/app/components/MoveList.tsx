@@ -1,6 +1,7 @@
 "use client";
 
 import { Move } from "../lib/chess";
+import { tokenVar } from "../lib/theme";
 
 interface MoveListProps {
   moves: Move[];
@@ -10,9 +11,15 @@ interface MoveListProps {
 
 export default function MoveList({ moves, currentIndex, onSelect }: MoveListProps) {
   return (
-    <div className="rounded-lg border" style={{ borderColor: "#3a3228", backgroundColor: "#241f19" }}>
-      <div className="border-b px-4 py-2" style={{ borderColor: "#3a3228" }}>
-        <h3 className="text-sm font-semibold" style={{ color: "#c9a84c" }}>
+    <div
+      className="rounded-lg border"
+      style={{ borderColor: tokenVar("panelBorder"), backgroundColor: tokenVar("panelBg") }}
+    >
+      <div
+        className="border-b px-4 py-2"
+        style={{ borderColor: tokenVar("panelBorder") }}
+      >
+        <h3 className="text-sm font-semibold" style={{ color: tokenVar("accent") }}>
           Moves
         </h3>
       </div>
@@ -23,15 +30,19 @@ export default function MoveList({ moves, currentIndex, onSelect }: MoveListProp
             onClick={() => onSelect(i)}
             className="px-4 py-2 text-left text-sm transition-colors"
             style={{
-              backgroundColor: i === currentIndex ? "rgba(201, 168, 76, 0.15)" : "transparent",
-              color: i === currentIndex ? "#c9a84c" : "#e8e0d4",
-              borderBottom: i < moves.length - 1 ? "1px solid #2a2420" : "none",
+              backgroundColor:
+                i === currentIndex
+                  ? "color-mix(in srgb, var(--accent) 15%, transparent)"
+                  : "transparent",
+              color: i === currentIndex ? tokenVar("accent") : tokenVar("fg"),
+              borderBottom:
+                i < moves.length - 1 ? `1px solid ${tokenVar("panelBorderSubtle")}` : "none",
             }}
           >
             <span className="font-medium" style={{ fontFamily: "monospace" }}>
               {move.notation}
             </span>
-            <span className="ml-2" style={{ color: "#8a7e6b" }}>
+            <span className="ml-2" style={{ color: tokenVar("fgMuted") }}>
               {move.description.length > 50
                 ? move.description.slice(0, 50) + "..."
                 : move.description}

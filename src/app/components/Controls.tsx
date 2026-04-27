@@ -1,5 +1,7 @@
 "use client";
 
+import { tokenVar } from "../lib/theme";
+
 interface ControlsProps {
   onReset: () => void;
   onBack: () => void;
@@ -17,9 +19,9 @@ export default function Controls({ onReset, onBack, onNext, canGoBack, canGoNext
         onClick={onReset}
         className={buttonBase}
         style={{
-          backgroundColor: "#2a2420",
-          color: "#e8e0d4",
-          border: "1px solid #3a3228",
+          backgroundColor: tokenVar("buttonBg"),
+          color: tokenVar("fg"),
+          border: `1px solid ${tokenVar("panelBorder")}`,
         }}
       >
         Reset
@@ -29,9 +31,9 @@ export default function Controls({ onReset, onBack, onNext, canGoBack, canGoNext
         disabled={!canGoBack}
         className={buttonBase}
         style={{
-          backgroundColor: canGoBack ? "#2a2420" : "#1e1a16",
-          color: canGoBack ? "#e8e0d4" : "#5a5248",
-          border: `1px solid ${canGoBack ? "#3a3228" : "#2a2420"}`,
+          backgroundColor: canGoBack ? tokenVar("buttonBg") : tokenVar("buttonBgDisabled"),
+          color: canGoBack ? tokenVar("fg") : tokenVar("buttonFgDisabled"),
+          border: `1px solid ${canGoBack ? tokenVar("panelBorder") : tokenVar("panelBorderSubtle")}`,
           cursor: canGoBack ? "pointer" : "not-allowed",
         }}
       >
@@ -42,9 +44,9 @@ export default function Controls({ onReset, onBack, onNext, canGoBack, canGoNext
         disabled={!canGoNext}
         className={buttonBase}
         style={{
-          backgroundColor: canGoNext ? "#c9a84c" : "#1e1a16",
-          color: canGoNext ? "#1a1612" : "#5a5248",
-          border: `1px solid ${canGoNext ? "#c9a84c" : "#2a2420"}`,
+          backgroundColor: canGoNext ? tokenVar("accent") : tokenVar("buttonBgDisabled"),
+          color: canGoNext ? tokenVar("accentFg") : tokenVar("buttonFgDisabled"),
+          border: `1px solid ${canGoNext ? tokenVar("accent") : tokenVar("panelBorderSubtle")}`,
           cursor: canGoNext ? "pointer" : "not-allowed",
           fontWeight: canGoNext ? 600 : 500,
         }}

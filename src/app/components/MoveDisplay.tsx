@@ -1,6 +1,7 @@
 "use client";
 
 import { Move } from "../lib/chess";
+import { tokenVar } from "../lib/theme";
 
 interface MoveDisplayProps {
   move: Move | null;
@@ -9,8 +10,11 @@ interface MoveDisplayProps {
 export default function MoveDisplay({ move }: MoveDisplayProps) {
   if (!move) {
     return (
-      <div className="rounded-lg border px-5 py-4" style={{ borderColor: "#3a3228", backgroundColor: "#241f19" }}>
-        <p style={{ color: "#8a7e6b" }} className="text-sm italic">
+      <div
+        className="rounded-lg border px-5 py-4"
+        style={{ borderColor: tokenVar("panelBorder"), backgroundColor: tokenVar("panelBg") }}
+      >
+        <p style={{ color: tokenVar("fgMuted") }} className="text-sm italic">
           Tap Next to step through the moves
         </p>
       </div>
@@ -18,11 +22,17 @@ export default function MoveDisplay({ move }: MoveDisplayProps) {
   }
 
   return (
-    <div className="rounded-lg border px-5 py-4" style={{ borderColor: "#3a3228", backgroundColor: "#241f19" }}>
-      <div className="mb-1 text-xl font-bold" style={{ color: "#c9a84c", fontFamily: "'Georgia', 'Times New Roman', serif" }}>
+    <div
+      className="rounded-lg border px-5 py-4"
+      style={{ borderColor: tokenVar("panelBorder"), backgroundColor: tokenVar("panelBg") }}
+    >
+      <div
+        className="mb-1 text-xl font-bold"
+        style={{ color: tokenVar("accent"), fontFamily: "'Georgia', 'Times New Roman', serif" }}
+      >
         {move.notation}
       </div>
-      <p style={{ color: "#e8e0d4" }} className="text-sm leading-relaxed">
+      <p style={{ color: tokenVar("fg") }} className="text-sm leading-relaxed">
         {move.description}
       </p>
     </div>

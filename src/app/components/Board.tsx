@@ -1,6 +1,7 @@
 "use client";
 
 import { Board as BoardType, Move, getPieceSymbol, isWhitePiece, FILES, RANKS } from "../lib/chess";
+import { tokenVar } from "../lib/theme";
 
 interface BoardProps {
   board: BoardType;
@@ -13,26 +14,23 @@ export default function Board({ board, currentMove }: BoardProps) {
   if (currentMove) {
     highlights.set(
       `${currentMove.to.row},${currentMove.to.col}`,
-      "rgba(34, 197, 94, 0.45)",
+      tokenVar("highlightTo"),
     );
     highlights.set(
       `${currentMove.from.row},${currentMove.from.col}`,
-      "rgba(245, 158, 11, 0.45)",
+      tokenVar("highlightFrom"),
     );
 
     if (currentMove.extra) {
       for (const ex of currentMove.extra) {
         highlights.set(
           `${ex.to.row},${ex.to.col}`,
-          "rgba(34, 197, 94, 0.3)",
+          tokenVar("highlightExtra"),
         );
       }
     }
   }
 
-  // The board scales with viewport on small screens but caps at 64px squares on
-  // wider ones. All children read these CSS variables so labels, fonts, and
-  // padding stay proportional.
   const boardVars = {
     "--sq": "clamp(34px, calc((100vw - 80px) / 8), 64px)",
     "--label": "calc(var(--sq) * 0.4375)",
@@ -43,7 +41,7 @@ export default function Board({ board, currentMove }: BoardProps) {
     width: "var(--label)",
     textAlign: "center",
     fontSize: 12,
-    color: "#8a7e6b",
+    color: tokenVar("fgMuted"),
     fontFamily: "monospace",
   };
 
@@ -51,7 +49,7 @@ export default function Board({ board, currentMove }: BoardProps) {
     width: "var(--sq)",
     textAlign: "center",
     fontSize: 12,
-    color: "#8a7e6b",
+    color: tokenVar("fgMuted"),
     fontFamily: "monospace",
   };
 
@@ -73,7 +71,9 @@ export default function Board({ board, currentMove }: BoardProps) {
 
           {row.map((piece, c) => {
             const isLight = (r + c) % 2 === 0;
-            const baseColor = isLight ? "#d4c4a0" : "#6b5c42";
+            const baseColor = isLight
+              ? tokenVar("squareLight")
+              : tokenVar("squareDark");
             const highlight = highlights.get(`${r},${c}`);
 
             return (
@@ -107,7 +107,9 @@ export default function Board({ board, currentMove }: BoardProps) {
                     style={{
                       position: "relative",
                       zIndex: 1,
-                      color: isWhitePiece(piece) ? "#fff" : "#1a1210",
+                      color: isWhitePiece(piece)
+                        ? tokenVar("pieceWhite")
+                        : tokenVar("pieceBlack"),
                       textShadow: isWhitePiece(piece)
                         ? "0 1px 3px rgba(0,0,0,0.6)"
                         : "0 1px 3px rgba(0,0,0,0.3)",

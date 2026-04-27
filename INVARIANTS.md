@@ -50,14 +50,18 @@ When you add a new feature, define the invariants first. Then implement. The inv
 
 ### Light Mode / Theme Toggle (Task 2)
 
-_Define your own invariants here. Think about:_
-
 | ID | Invariant | Severity |
 |----|-----------|----------|
-| THEME-01 | ? | ? |
-| THEME-02 | ? | ? |
+| THEME-01 | Every theme defines a value for every token in the token set (no theme has a missing key) | Critical |
+| THEME-02 | Adjacent board squares (light vs dark) are visibly distinguishable in every theme — at least 1.4:1 contrast ratio | Critical |
+| THEME-03 | Both white and black piece glyphs have ≥ 3:1 contrast against both shades of square in every theme | Critical |
+| THEME-04 | A theme is always active — no rendered state has an undefined / empty `data-theme` | Critical |
+| THEME-05 | Switching theme does not change board state: `selectedOpening` and `moveIndex` are preserved | Major |
+| THEME-06 | The user's theme choice persists across page reloads (round-trip through `localStorage`) | Major |
 
-_What must always be true about theme switching? About piece visibility? About persistence?_
+**Test file:** `tests/invariants/theme.test.ts`
+
+THEME-05 and THEME-06 are visible behaviours — they are also covered by QA.tech click-throughs. THEME-01..04 can be enforced in code.
 
 ### Board Flip (Task 3)
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { OPENINGS } from "../lib/openings";
+import { tokenVar } from "../lib/theme";
 
 interface OpeningSelectorProps {
   selected: string;
@@ -16,9 +17,9 @@ export default function OpeningSelector({ selected, onSelect }: OpeningSelectorP
           onClick={() => onSelect(key)}
           className="rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
           style={{
-            backgroundColor: selected === key ? "#c9a84c" : "#2a2420",
-            color: selected === key ? "#1a1612" : "#e8e0d4",
-            border: `1px solid ${selected === key ? "#c9a84c" : "#3a3228"}`,
+            backgroundColor: selected === key ? tokenVar("accent") : tokenVar("buttonBg"),
+            color: selected === key ? tokenVar("accentFg") : tokenVar("fg"),
+            border: `1px solid ${selected === key ? tokenVar("accent") : tokenVar("panelBorder")}`,
           }}
         >
           {opening.name}
