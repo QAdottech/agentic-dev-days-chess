@@ -78,14 +78,16 @@ When you add a new feature, define the invariants first. Then implement. The inv
 
 ### Shareable Links (Task 3)
 
-_Define your own invariants here. Think about:_
-
 | ID | Invariant | Severity |
 |----|-----------|----------|
-| SHARE-01 | ? | ? |
-| SHARE-02 | ? | ? |
+| SHARE-01 | `deserialize(serialize(state)) === state` for every valid `(opening, moveIndex)` pair | Critical |
+| SHARE-02 | `serialize` is deterministic — same input always produces the same string | Critical |
+| SHARE-03 | `deserialize` of empty / null / malformed input returns the default state without throwing | Critical |
+| SHARE-04 | An unknown opening key falls back to the default opening | Major |
+| SHARE-05 | A `moveIndex` outside `[-1, moves.length - 1]` is clamped to that range, never thrown | Major |
+| SHARE-06 | `deserialize` accepts both raw query strings (`opening=...`) and leading-`?` forms | Major |
 
-_What must always be true about URL serialization? About loading a shared link? About invalid URLs?_
+**Test file:** `tests/invariants/sharing.test.ts`
 
 ---
 
