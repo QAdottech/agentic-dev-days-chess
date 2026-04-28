@@ -14,7 +14,7 @@ import {
 } from "@/app/lib/chess";
 import { OPENINGS } from "@/app/lib/openings";
 
-describe("BOARD-01: The board is always 8×8", () => {
+describe("DATA-01: The board is always 8×8", () => {
   it("initial board has 8 rows", () => {
     expect(INITIAL_BOARD).toHaveLength(8);
   });
@@ -35,7 +35,7 @@ describe("BOARD-01: The board is always 8×8", () => {
   });
 });
 
-describe("BOARD-02: Initial position has exactly 16 white and 16 black pieces", () => {
+describe("DATA-02: Initial position has exactly 16 white and 16 black pieces", () => {
   it("counts correct", () => {
     const count = countPieces(INITIAL_BOARD);
     expect(count.white).toBe(16);
@@ -43,7 +43,7 @@ describe("BOARD-02: Initial position has exactly 16 white and 16 black pieces", 
   });
 });
 
-describe("BOARD-03: Each side always has exactly one king", () => {
+describe("DATA-03: Each side always has exactly one king", () => {
   it("initial position", () => {
     const kings = findKings(INITIAL_BOARD);
     expect(kings.white).not.toBeNull();
@@ -60,7 +60,7 @@ describe("BOARD-03: Each side always has exactly one king", () => {
   });
 });
 
-describe("BOARD-04: White pieces are uppercase, black pieces are lowercase", () => {
+describe("DATA-04: White pieces are uppercase, black pieces are lowercase", () => {
   it("initial position follows the convention", () => {
     for (let row = 0; row < 8; row++) {
       for (let col = 0; col < 8; col++) {
@@ -77,7 +77,7 @@ describe("BOARD-04: White pieces are uppercase, black pieces are lowercase", () 
   });
 });
 
-describe("BOARD-05: applyMove only changes from, to, and extra squares", () => {
+describe("LOGIC-01: applyMove only changes from, to, and extra squares", () => {
   it("non-involved squares are untouched", () => {
     const move: Move = {
       notation: "e4",
@@ -97,7 +97,7 @@ describe("BOARD-05: applyMove only changes from, to, and extra squares", () => {
   });
 });
 
-describe("BOARD-06: Applying zero moves returns initial position unchanged", () => {
+describe("LOGIC-02: Applying zero moves returns initial position unchanged", () => {
   it("clone matches initial", () => {
     const board = cloneBoard(INITIAL_BOARD);
     expect(board).toEqual(INITIAL_BOARD);

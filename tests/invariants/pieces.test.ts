@@ -3,7 +3,7 @@
 import { describe, it, expect } from "vitest";
 import { PIECE_SYMBOLS, getPieceSymbol, INITIAL_BOARD } from "@/app/lib/chess";
 
-describe("PIECE-01: Every piece letter maps to a unique Unicode symbol", () => {
+describe("LOGIC-03: Every piece letter maps to a unique Unicode symbol", () => {
   it("all 12 pieces are defined", () => {
     const pieces = ["K", "Q", "R", "B", "N", "P", "k", "q", "r", "b", "n", "p"];
     for (const piece of pieces) {
@@ -18,7 +18,7 @@ describe("PIECE-01: Every piece letter maps to a unique Unicode symbol", () => {
   });
 });
 
-describe("PIECE-02: getPieceSymbol returns non-empty for every piece on the initial board", () => {
+describe("LOGIC-04: getPieceSymbol returns non-empty for every piece on the initial board", () => {
   it("every occupied square has a renderable symbol", () => {
     for (let row = 0; row < 8; row++) {
       for (let col = 0; col < 8; col++) {

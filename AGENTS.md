@@ -11,22 +11,24 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `src/app/lib/` — pure functions (chess logic, openings data). All business logic goes here. Testable without React.
 - `src/app/components/` — React components. UI only, import logic from lib/.
 - `tests/invariants/` — invariant tests that verify product properties. Run with `npm test`.
-- `INVARIANTS.md` — the specification. Every invariant has an ID (e.g. BOARD-01, OPEN-05) and maps to a test.
+- `INVARIANTS.md` — the spec. Every invariant has an ID (e.g. `DATA-01`, `LOGIC-01`) and maps to a test.
 
 ## Invariant workflow
 
-This project uses **invariants** — properties that must always hold regardless of what changes are made.
+This project uses **invariants** — guardrails that fail the moment the agent drifts.
 
-1. Invariants are defined in `INVARIANTS.md` with an ID, description, and severity
-2. Each invariant has a corresponding test in `tests/invariants/`
-3. New features should have invariants defined BEFORE implementation
-4. Tests use `describe("ID: description")` naming to map back to INVARIANTS.md
+1. Invariants are defined in `INVARIANTS.md` with an ID, description, and severity.
+2. **IDs are categorized by what they constrain, not by feature.** Prefixes: `DATA` (data shape/integrity), `LOGIC` (pure function contracts), `UI` (DOM/jsdom), `BROWSER` (Layer 3 / QA.tech only). Never invent a per-feature prefix.
+3. Each invariant has a corresponding test in `tests/invariants/`. Tests use `describe("<ID>: <description>", ...)` naming.
+4. New features have invariants defined **before** implementation.
 
 When adding a feature:
-- First update `INVARIANTS.md` with new invariant definitions
-- Then create `tests/invariants/<feature>.test.ts` with tests for those invariants
-- Then implement the feature in `src/app/lib/` (pure functions) and `src/app/components/` (UI)
-- Run `npm run lint && npm test` before pushing
+- First, append rows to the matching category in `INVARIANTS.md`. Do not create a new section.
+- Then stub `tests/invariants/<feature>.test.ts` with `describe("<ID>: ...")` blocks.
+- Then implement the feature in `src/app/lib/` (pure functions) and `src/app/components/` (UI).
+- Run `npm run lint && npm test` before pushing.
+
+Run `/new-invariant` (Claude Code or Cursor) for a guided walkthrough.
 
 ## Important rules
 

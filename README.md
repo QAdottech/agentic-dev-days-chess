@@ -111,13 +111,24 @@ INVARIANTS.md             # the specification — what must always be true
 TASKS.md                  # workshop tasks — start here after setup
 ```
 
-## Key idea
+## Key idea: invariants as guardrails
 
-**Invariants** are properties that must always hold, regardless of what features you add:
-- "Every piece symbol matches its type" (a knight should look like a knight)
-- "Every move in every opening targets a valid square"
-- "The board is always 8×8"
+Coding agents are fast, but they drift — refactoring working code and breaking callsites, mutating state that was supposed to be immutable, changing data models while adding features. Without bumpers, you spend your review time hunting for damage instead of evaluating new work.
 
-Define invariants first. Then implement. The invariants tell your coding agent what "correct" means.
+**Invariants are machine-checkable properties that fail the moment the agent drifts.** Three from this repo:
+
+- `LOGIC-01` — `applyMove` only changes the from-square, to-square, and any extras. Catches the agent rewriting move logic and leaking changes elsewhere on the board.
+- `DATA-06` — every opening's `from` square has a piece on it when the move is applied. Catches data-entry mistakes when adding openings.
+- `DATA-09` — move notation matches destination coordinates: `"Bg7"` must land on g7. Catches transcription bugs that look right in the diff but render wrong on the board.
+
+Invariants are organized by **what they constrain** (data shape, function contracts, DOM, browser-only) — not by which feature added them. That's what lets the file scale: every new invariant has an obvious home, and removing a feature never orphans its rules. See `INVARIANTS.md` for the full taxonomy.
+
+The contract:
+
+1. Define the invariant **before** the feature.
+2. Direct the agent until the invariants pass.
+3. **If a test fails, the agent fixes the source, not the test.** Otherwise the guardrail is just decoration.
+
+Invariants accumulate. Every feature adds a few; none ever leave. The longer the project lives, the more bumpered the agent is against its own future drift.
 
 Read `INVARIANTS.md` for the full list, then open `TASKS.md` to get started.

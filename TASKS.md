@@ -12,9 +12,11 @@ Layer 3: QA.tech PR Review          → catches visual/behavioral issues  (~5 mi
 
 Chess logic lives in `src/app/lib/` as pure functions. Tests import and verify the real code.
 
-Invariants are defined in `INVARIANTS.md`. Read it first.
+Invariants are defined in `INVARIANTS.md`. Read it first — especially the "How this file is organized" section, which explains the category prefixes (`DATA`, `LOGIC`, `UI`, `BROWSER`) you'll use when adding your own.
 
 **Important:** If a test fails, fix the source code — never weaken the test.
+
+**Tip:** Run `/new-invariant` in Claude Code or Cursor to be walked through defining a new invariant the right way.
 
 ---
 
@@ -117,6 +119,16 @@ If you finish early, pick one or combine several:
 - **Opening comparison** — show two openings side by side on two boards. What invariants ensure the boards are independent?
 - **Sub-variations** — add branching where an opening can split into different lines (e.g. Sicilian Najdorf vs Dragon). How does the data model change? Do existing invariants still hold?
 - **Shareable links** — encode the current opening and move into the URL so it can be shared. What must be true about the round-trip: serialize → share → deserialize → same state?
+
+  *Worked example — what good invariants look like for this task. They're pure function contracts, so they go under `LOGIC-*` in `INVARIANTS.md`. Note: there is no `LINK-*` section — invariants are categorized by what they constrain, not the feature that added them.*
+
+  | ID | Invariant | Severity |
+  |----|-----------|----------|
+  | LOGIC-NN | For every `(openingId, moveIndex)` where the opening exists and `0 ≤ moveIndex ≤ moves.length`, `deserialize(serialize(state))` deep-equals `state`. | Critical |
+  | LOGIC-NN | `deserialize` returns a sentinel default state (no opening selected, moveIndex 0) for any malformed input — it never throws. | Major |
+
+  Notice the shape: each invariant names a specific function, quantifies over its full input domain, and states a falsifiable property. That's the bar to aim for when writing your own. Use the next available `LOGIC` numbers when you actually add them.
+
 - **Keyboard navigation** — arrow keys for next/back, number keys to jump to a move. Invariant: keyboard and button controls always produce the same board state.
 
 For all of these: **define invariants first, then implement.**
@@ -150,10 +162,12 @@ src/app/
     CheatSheet.tsx        # notation reference
 
 tests/invariants/
-    board.test.ts         # BOARD-01..06
-    pieces.test.ts        # PIECE-01..03
-    openings.test.ts      # OPEN-01..05
+    board.test.ts         # DATA-01..04, LOGIC-01..02
+    pieces.test.ts        # LOGIC-03..04
+    openings.test.ts      # DATA-05..09
 ```
+
+Invariant IDs use a stable category prefix — `DATA`, `LOGIC`, `UI`, `BROWSER` — not a feature name. See `INVARIANTS.md` for the full taxonomy and how to extend it.
 
 ### Key Functions in lib/chess.ts
 
