@@ -272,7 +272,57 @@ export const OPENINGS: Record<string, Opening> = {
         description:
           "The fianchettoed bishop — it looks passive but aims at White's center like a laser.",
         from: { row: 0, col: 5 },
-        to: { row: 2, col: 6 },
+        to: { row: 1, col: 6 },
+      },
+    ],
+  },
+
+  scholarsmate: {
+    name: "Scholar's Mate",
+    description:
+      "The fastest checkmate you'll see in a real game. White targets f7 with both the queen and bishop — and if Black isn't careful, it's over in four moves.",
+    moves: [
+      {
+        notation: "1. e4",
+        description: "White opens with the king's pawn, clearing the path for the queen and bishop.",
+        from: { row: 6, col: 4 },
+        to: { row: 4, col: 4 },
+      },
+      {
+        notation: "1... e5",
+        description: "Black responds symmetrically — but leaves f7 with only the king to defend it.",
+        from: { row: 1, col: 4 },
+        to: { row: 3, col: 4 },
+      },
+      {
+        notation: "2. Bc4",
+        description: "The bishop takes aim at f7 — Black's weakest square, defended only by the king.",
+        from: { row: 7, col: 5 },
+        to: { row: 4, col: 2 },
+      },
+      {
+        notation: "2... Nc6",
+        description: "Black develops the knight, but doesn't address the threat building on f7.",
+        from: { row: 0, col: 1 },
+        to: { row: 2, col: 2 },
+      },
+      {
+        notation: "3. Qh5",
+        description: "The queen swings to h5, joining the attack on f7. Two pieces now target the same square!",
+        from: { row: 7, col: 3 },
+        to: { row: 3, col: 7 },
+      },
+      {
+        notation: "3... Nf6",
+        description: "Black tries to chase the queen with the knight — but it's too late.",
+        from: { row: 0, col: 6 },
+        to: { row: 2, col: 5 },
+      },
+      {
+        notation: "4. Qxf7#",
+        description: "Checkmate! The queen captures on f7, protected by the bishop. The king has no escape.",
+        from: { row: 3, col: 7 },
+        to: { row: 1, col: 5 },
       },
     ],
   },
