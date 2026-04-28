@@ -13,6 +13,8 @@ Properties that must **always hold**, regardless of which feature is added or ch
 | `UI-*` | DOM / rendering properties checkable in jsdom (element exists, attribute matches state) | Layer 2 (vitest + @testing-library) |
 | `BROWSER-*` | Properties that require a real browser to verify (visual contrast, mobile layout, animation) | Layer 3 (QA.tech) |
 
+**Good invariants describe the product, not the implementation.** A solid invariant survives any rewrite — if swapping React for Solid, or renaming functions, or restructuring state would invalidate it, it's a unit test in disguise. Aim for properties of rendered output, stored data, or observable behavior. Naming a specific function is OK *only* when that function is part of the project's stable public API (e.g. `applyMove` in `src/app/lib/chess.ts`); never when the feature itself is creating the function.
+
 When adding an invariant, decide what it constrains and append to the matching section. **Don't create a new per-feature section.** If nothing fits, the right move is to question the invariant — most "feature-specific" invariants reduce to one of the above when phrased as a falsifiable property.
 
 Tests use `describe("<ID>: <description>", ...)` to map back to this file.
