@@ -1,6 +1,6 @@
 "use client";
 
-import { Move } from "../lib/chess";
+import { Move, squareToAlgebraic } from "../lib/chess";
 
 interface MoveListProps {
   moves: Move[];
