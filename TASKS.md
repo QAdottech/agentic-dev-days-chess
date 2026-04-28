@@ -117,6 +117,16 @@ If you finish early, pick one or combine several:
 - **Opening comparison** — show two openings side by side on two boards. What invariants ensure the boards are independent?
 - **Sub-variations** — add branching where an opening can split into different lines (e.g. Sicilian Najdorf vs Dragon). How does the data model change? Do existing invariants still hold?
 - **Shareable links** — encode the current opening and move into the URL so it can be shared. What must be true about the round-trip: serialize → share → deserialize → same state?
+
+  *Worked example — what a good invariant looks like for this task:*
+
+  | ID | Invariant | Severity |
+  |----|-----------|----------|
+  | LINK-01 | For every `(openingId, moveIndex)` where the opening exists and `0 ≤ moveIndex ≤ moves.length`, `deserialize(serialize(state))` deep-equals `state`. | Critical |
+  | LINK-02 | `deserialize` returns a sentinel default state (no opening selected, moveIndex 0) for any malformed input — it never throws. | Major |
+
+  Notice the shape: each invariant names a specific function, quantifies over its full input domain, and states a falsifiable property. That's the bar to aim for when writing your own.
+
 - **Keyboard navigation** — arrow keys for next/back, number keys to jump to a move. Invariant: keyboard and button controls always produce the same board state.
 
 For all of these: **define invariants first, then implement.**
@@ -151,7 +161,7 @@ src/app/
 
 tests/invariants/
     board.test.ts         # BOARD-01..06
-    pieces.test.ts        # PIECE-01..03
+    pieces.test.ts        # PIECE-01..02
     openings.test.ts      # OPEN-01..05
 ```
 
