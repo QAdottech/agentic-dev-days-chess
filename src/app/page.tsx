@@ -80,7 +80,7 @@ export default function Home() {
         {/* Main content */}
         <div className="flex flex-col gap-8 lg:flex-row">
           {/* Left: Board + controls */}
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex w-full flex-col items-center gap-4 lg:w-[568px] lg:flex-shrink-0">
             <Board board={board} currentMove={currentMove} />
             <Controls
               onReset={handleReset}
