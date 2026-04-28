@@ -229,6 +229,62 @@ export const OPENINGS: Record<string, Opening> = {
     ],
   },
 
+  french: {
+    name: "French Defense",
+    description:
+      "Black replies to 1.e4 with 1...e6, preparing d5 to challenge the center. Leads to closed, strategic positions with a characteristic locked pawn chain.",
+    moves: [
+      {
+        notation: "1. e4",
+        description: "White claims the center with the king's pawn.",
+        from: { row: 6, col: 4 },
+        to: { row: 4, col: 4 },
+      },
+      {
+        notation: "1... e6",
+        description:
+          "The French! Black prepares d5 to contest the center — solid but hems in the light-squared bishop.",
+        from: { row: 1, col: 4 },
+        to: { row: 2, col: 4 },
+      },
+      {
+        notation: "2. d4",
+        description:
+          "White grabs a big center. Black must strike immediately or be suffocated.",
+        from: { row: 6, col: 3 },
+        to: { row: 4, col: 3 },
+      },
+      {
+        notation: "2... d5",
+        description:
+          "Black challenges the center head-on. White now has three main choices: Nc3, Nd2, e5, or the Exchange.",
+        from: { row: 1, col: 3 },
+        to: { row: 3, col: 3 },
+      },
+      {
+        notation: "3. Nc3",
+        description:
+          "The main line. White develops the knight and defends e4, inviting the sharp Winawer or Classical variations.",
+        from: { row: 7, col: 1 },
+        to: { row: 5, col: 2 },
+      },
+      {
+        notation: "3... Nf6",
+        description:
+          "The Classical French — Black attacks e4 with the knight, accepting the space disadvantage for quick development.",
+        from: { row: 0, col: 6 },
+        to: { row: 2, col: 5 },
+      },
+      {
+        notation: "4. Bg5",
+        description:
+          "Pinning the knight against the queen — a sharp, direct approach that pressures Black's position.",
+        from: { row: 7, col: 2 },
+        to: { row: 3, col: 6 },
+      },
+    ],
+  },
+
   kingsinidan: {
     name: "King's Indian Defense",
     description:
