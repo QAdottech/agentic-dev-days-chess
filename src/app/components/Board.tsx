@@ -1,11 +1,19 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { Board as BoardType, Move, getPieceSymbol, isWhitePiece, FILES, RANKS } from "../lib/chess";
 
 interface BoardProps {
   board: BoardType;
   currentMove: Move | null;
 }
+
+const boardVars: CSSProperties = {
+  display: "inline-block",
+  ["--sq" as string]: "clamp(32px, calc((100vw - 80px) / 8.875), 64px)",
+  ["--lbl" as string]: "calc(var(--sq) * 0.4375)",
+  ["--piece" as string]: "calc(var(--sq) * 0.625)",
+};
 
 export default function Board({ board, currentMove }: BoardProps) {
   const highlights = new Map<string, string>();
@@ -16,7 +24,7 @@ export default function Board({ board, currentMove }: BoardProps) {
       "rgba(34, 197, 94, 0.45)",
     );
     highlights.set(
-      `${currentMove.from.row},${currentMove.from.col + 1}`,
+      `${currentMove.from.row},${currentMove.from.col}`,
       "rgba(245, 158, 11, 0.45)",
     );
 
@@ -31,14 +39,14 @@ export default function Board({ board, currentMove }: BoardProps) {
   }
 
   return (
-    <div style={{ display: "inline-block" }}>
+    <div style={boardVars}>
       {/* Top file labels */}
-      <div style={{ display: "flex", paddingLeft: 28 }}>
+      <div style={{ display: "flex", paddingLeft: "var(--lbl)" }}>
         {FILES.map((f) => (
           <div
             key={f}
             style={{
-              width: 64,
+              width: "var(--sq)",
               textAlign: "center",
               fontSize: 12,
               color: "#8a7e6b",
@@ -56,7 +64,7 @@ export default function Board({ board, currentMove }: BoardProps) {
           {/* Left rank label */}
           <div
             style={{
-              width: 28,
+              width: "var(--lbl)",
               textAlign: "center",
               fontSize: 12,
               color: "#8a7e6b",
@@ -75,14 +83,14 @@ export default function Board({ board, currentMove }: BoardProps) {
               <div
                 key={c}
                 style={{
-                  width: 64,
-                  height: 64,
+                  width: "var(--sq)",
+                  height: "var(--sq)",
                   backgroundColor: baseColor,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   position: "relative",
-                  fontSize: 40,
+                  fontSize: "var(--piece)",
                   lineHeight: 1,
                   userSelect: "none",
                 }}
@@ -121,7 +129,7 @@ export default function Board({ board, currentMove }: BoardProps) {
           {/* Right rank label */}
           <div
             style={{
-              width: 28,
+              width: "var(--lbl)",
               textAlign: "center",
               fontSize: 12,
               color: "#8a7e6b",
@@ -134,12 +142,12 @@ export default function Board({ board, currentMove }: BoardProps) {
       ))}
 
       {/* Bottom file labels */}
-      <div style={{ display: "flex", paddingLeft: 28 }}>
+      <div style={{ display: "flex", paddingLeft: "var(--lbl)" }}>
         {FILES.map((f) => (
           <div
             key={f}
             style={{
-              width: 64,
+              width: "var(--sq)",
               textAlign: "center",
               fontSize: 12,
               color: "#8a7e6b",
