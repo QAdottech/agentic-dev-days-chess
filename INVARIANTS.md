@@ -54,7 +54,12 @@ Tests use `describe("<ID>: <description>", ...)` to map back to this file.
 
 ## UI — DOM / rendering, checkable in jsdom
 
-_No invariants in this category yet. They'll appear as features add jsdom-checkable rendering properties (e.g. "the move-list shows exactly `moves.length` items", "the active opening's tab has `aria-current="true"`")._
+| ID | Invariant | Severity |
+|----|-----------|----------|
+| UI-01 | The highlighted origin and destination squares exactly match the current move coordinates | Critical |
+| UI-02 | Advancing to a new move clears origin/destination highlights from previous moves | Critical |
+
+**Test files:** `tests/invariants/board-ui.test.tsx`
 
 ---
 

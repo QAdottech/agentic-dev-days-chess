@@ -30,3 +30,12 @@ describe("LOGIC-04: getPieceSymbol returns non-empty for every piece on the init
     }
   });
 });
+
+describe("LOGIC-05: Knight and bishop symbols match the correct piece type for both colors", () => {
+  it("uses bishop glyphs for bishops and knight glyphs for knights", () => {
+    expect(getPieceSymbol("B")).toBe("\u2657");
+    expect(getPieceSymbol("N")).toBe("\u2658");
+    expect(getPieceSymbol("b")).toBe("\u265D");
+    expect(getPieceSymbol("n")).toBe("\u265E");
+  });
+});
