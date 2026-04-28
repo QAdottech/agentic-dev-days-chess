@@ -229,6 +229,55 @@ export const OPENINGS: Record<string, Opening> = {
     ],
   },
 
+  french: {
+    name: "French Defense",
+    description:
+      "Black answers 1.e4 with 1...e6, planning ...d5 to challenge the center directly. Solid and strategic — favored by Botvinnik, Korchnoi, and Morozevich.",
+    moves: [
+      {
+        notation: "1. e4",
+        description: "White claims the center with the king's pawn.",
+        from: { row: 6, col: 4 },
+        to: { row: 4, col: 4 },
+      },
+      {
+        notation: "1... e6",
+        description:
+          "The French! A modest pawn move that prepares ...d5 to strike at e4.",
+        from: { row: 1, col: 4 },
+        to: { row: 2, col: 4 },
+      },
+      {
+        notation: "2. d4",
+        description:
+          "White builds a broad pawn center, daring Black to challenge it.",
+        from: { row: 6, col: 3 },
+        to: { row: 4, col: 3 },
+      },
+      {
+        notation: "2... d5",
+        description:
+          "Black hits e4 immediately — the defining idea of the French.",
+        from: { row: 1, col: 3 },
+        to: { row: 3, col: 3 },
+      },
+      {
+        notation: "3. Nc3",
+        description:
+          "The main line. White defends e4 and prepares to develop classically.",
+        from: { row: 7, col: 1 },
+        to: { row: 5, col: 2 },
+      },
+      {
+        notation: "3... Nf6",
+        description:
+          "Black piles pressure on e4, inviting the sharp Classical Variation.",
+        from: { row: 0, col: 6 },
+        to: { row: 2, col: 5 },
+      },
+    ],
+  },
+
   kingsinidan: {
     name: "King's Indian Defense",
     description:
