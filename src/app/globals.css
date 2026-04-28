@@ -3,6 +3,15 @@
 :root {
   --background: #1a1612;
   --foreground: #e8e0d4;
+  --sq: 40px;
+  --sq-label: 22px;
+}
+
+@media (min-width: 480px) {
+  :root {
+    --sq: 64px;
+    --sq-label: 28px;
+  }
 }
 
 @theme inline {
