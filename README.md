@@ -117,9 +117,11 @@ Coding agents are fast, but they drift — refactoring working code and breaking
 
 **Invariants are machine-checkable properties that fail the moment the agent drifts.** Three from this repo:
 
-- `BOARD-05` — `applyMove` only changes the from-square, to-square, and any extras. Catches the agent rewriting move logic and leaking changes elsewhere on the board.
-- `OPEN-02` — every opening's `from` square has a piece on it when the move is applied. Catches data-entry mistakes when adding openings.
-- `OPEN-05` — move notation matches destination coordinates: `"Bg7"` must land on g7. Catches transcription bugs that look right in the diff but render wrong on the board.
+- `LOGIC-01` — `applyMove` only changes the from-square, to-square, and any extras. Catches the agent rewriting move logic and leaking changes elsewhere on the board.
+- `DATA-06` — every opening's `from` square has a piece on it when the move is applied. Catches data-entry mistakes when adding openings.
+- `DATA-09` — move notation matches destination coordinates: `"Bg7"` must land on g7. Catches transcription bugs that look right in the diff but render wrong on the board.
+
+Invariants are organized by **what they constrain** (data shape, function contracts, DOM, browser-only) — not by which feature added them. That's what lets the file scale: every new invariant has an obvious home, and removing a feature never orphans its rules. See `INVARIANTS.md` for the full taxonomy.
 
 The contract:
 
