@@ -16,7 +16,7 @@ export default function Board({ board, currentMove }: BoardProps) {
       "rgba(34, 197, 94, 0.45)",
     );
     highlights.set(
-      `${currentMove.from.row},${currentMove.from.col + 1}`,
+      `${currentMove.from.row},${currentMove.from.col}`,
       "rgba(245, 158, 11, 0.45)",
     );
 
@@ -30,15 +30,26 @@ export default function Board({ board, currentMove }: BoardProps) {
     }
   }
 
+  const labelStyle: React.CSSProperties = {
+    flex: "0 0 28px",
+    width: 28,
+    textAlign: "center",
+    fontSize: 12,
+    color: "#8a7e6b",
+    fontFamily: "monospace",
+  };
+
   return (
-    <div style={{ display: "inline-block" }}>
+    <div style={{ width: "100%", maxWidth: 568 }}>
       {/* Top file labels */}
-      <div style={{ display: "flex", paddingLeft: 28 }}>
+      <div style={{ display: "flex" }}>
+        <div style={{ flex: "0 0 28px" }} />
         {FILES.map((f) => (
           <div
             key={f}
             style={{
-              width: 64,
+              flex: "1 1 0",
+              maxWidth: 64,
               textAlign: "center",
               fontSize: 12,
               color: "#8a7e6b",
@@ -49,20 +60,13 @@ export default function Board({ board, currentMove }: BoardProps) {
             {f}
           </div>
         ))}
+        <div style={{ flex: "0 0 28px" }} />
       </div>
 
       {board.map((row, r) => (
-        <div key={r} style={{ display: "flex", alignItems: "center" }}>
+        <div key={r} style={{ display: "flex", alignItems: "stretch" }}>
           {/* Left rank label */}
-          <div
-            style={{
-              width: 28,
-              textAlign: "center",
-              fontSize: 12,
-              color: "#8a7e6b",
-              fontFamily: "monospace",
-            }}
-          >
+          <div style={{ ...labelStyle, display: "flex", alignItems: "center", justifyContent: "center" }}>
             {RANKS[r]}
           </div>
 
@@ -75,14 +79,15 @@ export default function Board({ board, currentMove }: BoardProps) {
               <div
                 key={c}
                 style={{
-                  width: 64,
-                  height: 64,
+                  flex: "1 1 0",
+                  maxWidth: 64,
+                  aspectRatio: "1",
                   backgroundColor: baseColor,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   position: "relative",
-                  fontSize: 40,
+                  fontSize: "min(40px, 5vw)",
                   lineHeight: 1,
                   userSelect: "none",
                 }}
@@ -119,27 +124,21 @@ export default function Board({ board, currentMove }: BoardProps) {
           })}
 
           {/* Right rank label */}
-          <div
-            style={{
-              width: 28,
-              textAlign: "center",
-              fontSize: 12,
-              color: "#8a7e6b",
-              fontFamily: "monospace",
-            }}
-          >
+          <div style={{ ...labelStyle, display: "flex", alignItems: "center", justifyContent: "center" }}>
             {RANKS[r]}
           </div>
         </div>
       ))}
 
       {/* Bottom file labels */}
-      <div style={{ display: "flex", paddingLeft: 28 }}>
+      <div style={{ display: "flex" }}>
+        <div style={{ flex: "0 0 28px" }} />
         {FILES.map((f) => (
           <div
             key={f}
             style={{
-              width: 64,
+              flex: "1 1 0",
+              maxWidth: 64,
               textAlign: "center",
               fontSize: 12,
               color: "#8a7e6b",
@@ -150,6 +149,7 @@ export default function Board({ board, currentMove }: BoardProps) {
             {f}
           </div>
         ))}
+        <div style={{ flex: "0 0 28px" }} />
       </div>
     </div>
   );
