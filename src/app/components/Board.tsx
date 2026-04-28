@@ -107,8 +107,6 @@ export default function Board({ board, currentMove }: BoardProps) {
                       position: "relative",
                       zIndex: 1,
                       color: isWhitePiece(piece) ? "#fff" : "#1a1210",
-                      fontFamily:
-                        "'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Symbols2', 'DejaVu Sans', 'Symbola', sans-serif",
                       textShadow: isWhitePiece(piece)
                         ? "0 1px 3px rgba(0,0,0,0.6)"
                         : "0 1px 3px rgba(0,0,0,0.3)",

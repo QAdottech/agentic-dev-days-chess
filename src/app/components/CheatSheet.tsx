@@ -31,15 +31,7 @@ export default function CheatSheet() {
             <div key={item.name} className="flex items-center gap-2 text-sm" style={{ color: "#e8e0d4" }}>
               {item.symbol ? (
                 <>
-                  <span
-                    className="text-lg"
-                    style={{
-                      fontFamily:
-                        "'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Symbols2', 'DejaVu Sans', 'Symbola', sans-serif",
-                    }}
-                  >
-                    {PIECE_DISPLAY[item.symbol]}
-                  </span>
+                  <span className="text-lg">{PIECE_DISPLAY[item.symbol]}</span>
                   <span>
                     <span className="font-bold" style={{ color: "#c9a84c" }}>{item.symbol}</span> = {item.name}
                   </span>
