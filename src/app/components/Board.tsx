@@ -7,6 +7,11 @@ interface BoardProps {
   currentMove: Move | null;
 }
 
+// Responsive square size: native 64px on wide screens, scales down on mobile
+// 104px = 48px page padding (px-6 × 2) + 56px rank labels (28px × 2)
+const SQ = "min(64px, calc((100vw - 104px) / 8))";
+const PIECE_FONT = "min(40px, calc((100vw - 104px) / 8 * 0.7))";
+
 export default function Board({ board, currentMove }: BoardProps) {
   const highlights = new Map<string, string>();
 
@@ -16,7 +21,7 @@ export default function Board({ board, currentMove }: BoardProps) {
       "rgba(34, 197, 94, 0.45)",
     );
     highlights.set(
-      `${currentMove.from.row},${currentMove.from.col + 1}`,
+      `${currentMove.from.row},${currentMove.from.col}`,
       "rgba(245, 158, 11, 0.45)",
     );
 
@@ -31,14 +36,14 @@ export default function Board({ board, currentMove }: BoardProps) {
   }
 
   return (
-    <div style={{ display: "inline-block" }}>
+    <div style={{ display: "inline-block", maxWidth: "100%" }}>
       {/* Top file labels */}
       <div style={{ display: "flex", paddingLeft: 28 }}>
         {FILES.map((f) => (
           <div
             key={f}
             style={{
-              width: 64,
+              width: SQ,
               textAlign: "center",
               fontSize: 12,
               color: "#8a7e6b",
@@ -75,14 +80,14 @@ export default function Board({ board, currentMove }: BoardProps) {
               <div
                 key={c}
                 style={{
-                  width: 64,
-                  height: 64,
+                  width: SQ,
+                  height: SQ,
                   backgroundColor: baseColor,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   position: "relative",
-                  fontSize: 40,
+                  fontSize: PIECE_FONT,
                   lineHeight: 1,
                   userSelect: "none",
                 }}
@@ -139,7 +144,7 @@ export default function Board({ board, currentMove }: BoardProps) {
           <div
             key={f}
             style={{
-              width: 64,
+              width: SQ,
               textAlign: "center",
               fontSize: 12,
               color: "#8a7e6b",
