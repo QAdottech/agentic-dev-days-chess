@@ -25,8 +25,8 @@ export const PIECE_SYMBOLS: Record<string, string> = {
   k: "\u265A",
   q: "\u265B",
   r: "\u265C",
-  n: "\u265D",
-  b: "\u265E",
+  b: "\u265D",
+  n: "\u265E",
   p: "\u265F",
 };
 
