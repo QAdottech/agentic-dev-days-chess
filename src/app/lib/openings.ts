@@ -180,6 +180,47 @@ export const OPENINGS: Record<string, Opening> = {
     ],
   },
 
+  french: {
+    name: "French Defense",
+    description:
+      "Black challenges the center with e6 and d5, aiming for a solid but counterattacking structure.",
+    moves: [
+      {
+        notation: "1. e4",
+        description: "White stakes a claim in the center with the king's pawn.",
+        from: { row: 6, col: 4 },
+        to: { row: 4, col: 4 },
+      },
+      {
+        notation: "1... e6",
+        description:
+          "Black prepares to contest d5 and build a sturdy pawn chain.",
+        from: { row: 1, col: 4 },
+        to: { row: 2, col: 4 },
+      },
+      {
+        notation: "2. d4",
+        description: "White reinforces the center and supports e5.",
+        from: { row: 6, col: 3 },
+        to: { row: 4, col: 3 },
+      },
+      {
+        notation: "2... d5",
+        description:
+          "The hallmark of the French: Black immediately challenges the center.",
+        from: { row: 1, col: 3 },
+        to: { row: 3, col: 3 },
+      },
+      {
+        notation: "3. Nc3",
+        description:
+          "White develops the knight, supporting the center and preparing e5.",
+        from: { row: 7, col: 1 },
+        to: { row: 5, col: 2 },
+      },
+    ],
+  },
+
   queensgambit: {
     name: "Queen's Gambit",
     description:
