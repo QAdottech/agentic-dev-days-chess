@@ -229,6 +229,69 @@ export const OPENINGS: Record<string, Opening> = {
     ],
   },
 
+  carokann: {
+    name: "Caro-Kann Defense",
+    description:
+      "A solid, reliable answer to 1.e4 favored by world champions like Karpov and Petrosian. Black builds a sturdy pawn structure before challenging the center.",
+    moves: [
+      {
+        notation: "1. e4",
+        description: "White claims the center with the king's pawn.",
+        from: { row: 6, col: 4 },
+        to: { row: 4, col: 4 },
+      },
+      {
+        notation: "1... c6",
+        description:
+          "The Caro-Kann! A modest move that prepares ...d5 with the c-pawn supporting it.",
+        from: { row: 1, col: 2 },
+        to: { row: 2, col: 2 },
+      },
+      {
+        notation: "2. d4",
+        description:
+          "White builds a broad pawn center, daring Black to challenge it.",
+        from: { row: 6, col: 3 },
+        to: { row: 4, col: 3 },
+      },
+      {
+        notation: "2... d5",
+        description:
+          "Black strikes at the center — unlike the French, the c8-bishop stays free.",
+        from: { row: 1, col: 3 },
+        to: { row: 3, col: 3 },
+      },
+      {
+        notation: "3. Nc3",
+        description:
+          "White develops the knight, defending e4 and preparing the main lines.",
+        from: { row: 7, col: 1 },
+        to: { row: 5, col: 2 },
+      },
+      {
+        notation: "3... dxe4",
+        description:
+          "Black trades pawns, opening the d-file and inviting the knight to recapture.",
+        from: { row: 3, col: 3 },
+        to: { row: 4, col: 4 },
+      },
+      {
+        notation: "4. Nxe4",
+        description:
+          "The knight reaches a strong central post.",
+        from: { row: 5, col: 2 },
+        to: { row: 4, col: 4 },
+      },
+      {
+        notation: "4... Bf5",
+        description:
+          "The Classical Caro-Kann — Black develops the bishop actively before locking it in with ...e6.",
+        from: { row: 0, col: 2 },
+        to: { row: 3, col: 5 },
+      },
+    ],
+  },
+
   kingsinidan: {
     name: "King's Indian Defense",
     description:
