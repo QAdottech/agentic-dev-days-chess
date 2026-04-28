@@ -45,7 +45,7 @@ export default function Home() {
         fontFamily: "'Georgia', 'Times New Roman', serif",
       }}
     >
-      <div className="mx-auto max-w-6xl px-6 py-8">
+      <div className="mx-auto max-w-6xl px-2 py-8 sm:px-6">
         {/* Header */}
         <div className="mb-8">
           <h1
